@@ -42,4 +42,5 @@ public class StartScene extends StaticScene {
         subscript.setFont(Font.font("Roboto", FontWeight.SEMI_BOLD, 40));
         addEntity(subscript);
     }
+
 }

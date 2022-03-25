@@ -1,8 +1,8 @@
 package nl.oopd.peach;
 
-import com.github.hanyaeger.api.Size;
-import com.github.hanyaeger.api.YaegerGame;
-import nl.oopd.peach.scenes.StartScene;
+        import com.github.hanyaeger.api.Size;
+        import com.github.hanyaeger.api.YaegerGame;
+        import nl.oopd.peach.scenes.StartScene;
 
 public class Main extends YaegerGame {
 

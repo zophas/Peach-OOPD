@@ -2,18 +2,21 @@ package nl.oopd.peach.entities;
 
 import com.github.hanyaeger.api.entities.Collider;
 import javafx.scene.Node;
+import nl.oopd.peach.entities.IBehaviour;
 
 import java.util.Optional;
 
-public class Player extends Entities {
+public class NormalEnemy extends Entities {
 
+    int score;
 
-    public Player(int health, int speed, int damage) {
-        super(health,speed, damage);
+    public NormalEnemy(int health, int damage, int speed, int score) {
+        super(health, damage, speed);
+        this.score = score;
     }
 
     @Override
-    public void doDamage(){
+    public void doDamage() {
 
     }
 

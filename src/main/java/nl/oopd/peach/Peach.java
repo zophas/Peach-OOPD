@@ -5,7 +5,7 @@ import com.github.hanyaeger.api.YaegerGame;
 import nl.oopd.peach.scenes.GameLevel;
 import nl.oopd.peach.scenes.StartScene;
 
-public class Main extends YaegerGame {
+public class Peach extends YaegerGame {
 
     private final String GAMETITLE = "Peach - A Mario Sequel";
     private final Size SIZE = new Size(1280, 720);

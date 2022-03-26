@@ -19,14 +19,4 @@ public class NormalEnemy extends Entities {
     public void doDamage() {
 
     }
-
-    @Override
-    public void onCollision(Collider collider) {
-
-    }
-
-    @Override
-    public Optional<? extends Node> getNode() {
-        return Optional.empty();
-    }
 }

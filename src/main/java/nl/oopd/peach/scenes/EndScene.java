@@ -1,4 +1,4 @@
 package nl.oopd.peach.scenes;
 
-public class EindScene {
+public class EndScene {
 }

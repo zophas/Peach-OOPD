@@ -10,10 +10,13 @@ import javafx.scene.text.FontWeight;
 
 public class StartScene extends StaticScene {
 
-    private String titelTekst = "PEACH";
-    private double titelX, titelY;
-    private int titelFont = 80;
-    private double subscriptX, subscriptY;
+    private String titleText = "PEACH";
+    private String titleSubText = "A Mario sequel";
+
+    private int titleFont = 80;
+
+    private double titleX, titleY;
+    private double subTextX, subTextY;
 
     @Override
     public void setupScene() {
@@ -23,23 +26,23 @@ public class StartScene extends StaticScene {
 
     @Override
     public void setupEntities() {
-        titelX = getWidth() / 2;
-        titelY = getHeight() / 2 - 200;
+        titleX = getWidth() / 2;
+        titleY = getHeight() / 2 - 200;
 
-        TextEntity titel = new TextEntity(new Coordinate2D(titelX, titelY),titelTekst);
-        titel.setAnchorPoint(AnchorPoint.CENTER_CENTER);
-        titel.setFill(Color.HOTPINK);
-        titel.setFont(Font.font("Roboto", FontWeight.BLACK, titelFont));
-        titel.setStrokeColor(Color.BLACK);
-        titel.setStrokeWidth(2.5);
-        addEntity(titel);
+        TextEntity title = new TextEntity(new Coordinate2D(titleX, titleY),titleText);
+        title.setAnchorPoint(AnchorPoint.CENTER_CENTER);
+        title.setFill(Color.HOTPINK);
+        title.setFont(Font.font("Roboto", FontWeight.BLACK, titleFont));
+        title.setStrokeColor(Color.BLACK);
+        title.setStrokeWidth(2.5);
+        addEntity(title);
 
-        subscriptX = titelX;
-        subscriptY = titelY + titelFont;
-        TextEntity subscript = new TextEntity(new Coordinate2D(subscriptX, subscriptY), "A Mario sequel");
-        subscript.setFill(Color.WHITE);
-        subscript.setAnchorPoint(AnchorPoint.CENTER_CENTER);
-        subscript.setFont(Font.font("Roboto", FontWeight.SEMI_BOLD, 40));
-        addEntity(subscript);
+        subTextX = titleX;
+        subTextY = titleY + titleFont;
+        TextEntity subText = new TextEntity(new Coordinate2D(subTextX, subTextY),titleSubText);
+        subText.setFill(Color.WHITE);
+        subText.setAnchorPoint(AnchorPoint.CENTER_CENTER);
+        subText.setFont(Font.font("Roboto", FontWeight.SEMI_BOLD, 40));
+        addEntity(subText);
     }
 }

@@ -7,7 +7,7 @@ public class GameLevel extends DynamicScene {
     @Override
     public void setupScene() {
         setBackgroundImage("images/GameLevel_background.jpg");
-        setBackgroundAudio("audio/GameLevel_music.mp3");
+        setBackgroundAudio("audio/GameScene_music.mp3");
     }
 
     @Override

@@ -10,8 +10,10 @@ import javafx.scene.text.FontWeight;
 
 public class StartScene extends StaticScene {
 
-    private String titleText = "PEACH";
-    private String titleSubText = "A Mario sequel";
+    private final String TITLE_TEXT = "PEACH";
+    private final String TITLE_SUBTEXT = "A Mario sequel";
+    private  final String STARTSCENE_BACKGROUND = "images/StartScene_background.jpg";
+    private final String STARTSCENE_MUSIC = "audio/StartScene_music.mp3";
 
     private int titleFont = 80;
 
@@ -20,8 +22,8 @@ public class StartScene extends StaticScene {
 
     @Override
     public void setupScene() {
-        setBackgroundImage("images/StartScene_background.jpg");
-        setBackgroundAudio("audio/StartScene_music.mp3");
+        setBackgroundImage(STARTSCENE_BACKGROUND);
+        setBackgroundAudio(STARTSCENE_MUSIC);
     }
 
     @Override
@@ -29,7 +31,7 @@ public class StartScene extends StaticScene {
         titleX = getWidth() / 2;
         titleY = getHeight() / 2 - 200;
 
-        TextEntity title = new TextEntity(new Coordinate2D(titleX, titleY),titleText);
+        TextEntity title = new TextEntity(new Coordinate2D(titleX, titleY),TITLE_TEXT);
         title.setAnchorPoint(AnchorPoint.CENTER_CENTER);
         title.setFill(Color.HOTPINK);
         title.setFont(Font.font("Roboto", FontWeight.BLACK, titleFont));
@@ -39,7 +41,7 @@ public class StartScene extends StaticScene {
 
         subTextX = titleX;
         subTextY = titleY + titleFont;
-        TextEntity subText = new TextEntity(new Coordinate2D(subTextX, subTextY),titleSubText);
+        TextEntity subText = new TextEntity(new Coordinate2D(subTextX, subTextY),TITLE_SUBTEXT);
         subText.setFill(Color.WHITE);
         subText.setAnchorPoint(AnchorPoint.CENTER_CENTER);
         subText.setFont(Font.font("Roboto", FontWeight.SEMI_BOLD, 40));

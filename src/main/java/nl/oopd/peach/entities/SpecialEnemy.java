@@ -1,9 +1,10 @@
 package nl.oopd.peach.entities;
 
+import com.github.hanyaeger.api.Coordinate2D;
+
 public class SpecialEnemy extends NormalEnemy{
 
-    public SpecialEnemy(int health, int damage, int speed, int score) {
-        super(health, damage, speed, score);
+    public SpecialEnemy(Coordinate2D location,int score) {
+        super(location, score);
     }
 }
-

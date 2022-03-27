@@ -4,9 +4,9 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.impl.TextEntity;
 
 
-public class GameButton extends TextEntity{
+public class GameButton extends TextEntity {
 
-    public GameButton(Coordinate2D initialLocation) {
-        super(initialLocation);
+    public GameButton(final Coordinate2D initialLocation, final String text) {
+        super(initialLocation, text);
     }
 }

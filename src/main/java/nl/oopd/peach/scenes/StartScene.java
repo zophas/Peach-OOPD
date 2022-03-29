@@ -6,29 +6,23 @@ import com.github.hanyaeger.api.entities.impl.TextEntity;
 import com.github.hanyaeger.api.scenes.StaticScene;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import nl.oopd.peach.Peach;
-import nl.oopd.peach.entities.buttons.StartButton;
+
+import java.util.ArrayList;
 
 public class StartScene extends StaticScene {
 
-    private static final String STARTBUTTON_TEXT = "Play Game";
     private final String TITLE_TEXT = "PEACH";
     private final String TITLE_SUBTEXT = "A Mario sequel";
-
-    private  final String STARTSCENE_BACKGROUND = "images/StartScene_background.jpg";
+    private final String STARTSCENE_BACKGROUND = "images/StartScene_background.jpg";
     private final String STARTSCENE_MUSIC = "audio/StartScene_music.mp3";
 
     private int titleFont = 80;
 
-    private double titleX, titleY;
-    private double subTextX, subTextY;
+    private final Font BLACK = Font.loadFont("file:nl/oopd/peach/resources/fonts/Montserrat-Black.ttf", 200);
+    private final Font MEDIUM = Font.loadFont("file:nl/oopd/peach/resources/fonts/Montserrat-Medium.ttf", 100);
 
-    private Peach peach;
 
-    public StartScene(Peach peach){
-        this.peach = peach;
-    }
+    private ArrayList<TextEntity> texts = new ArrayList<>();
 
     @Override
     public void setupScene() {
@@ -38,27 +32,23 @@ public class StartScene extends StaticScene {
 
     @Override
     public void setupEntities() {
-        titleX = getWidth() / 2;
-        titleY = getHeight() / 2 - 200;
+        Coordinate2D title = new Coordinate2D(getWidth() / 2, getHeight() / 2 - 200);
+        Coordinate2D subtext = new Coordinate2D(getWidth() / 2, getHeight() / 2 - 200 + titleFont);
 
-        TextEntity title = new TextEntity(new Coordinate2D(titleX, titleY),TITLE_TEXT);
-        title.setAnchorPoint(AnchorPoint.CENTER_CENTER);
-        title.setFill(Color.HOTPINK);
-        title.setFont(Font.font("Roboto", FontWeight.BLACK, titleFont));
-        title.setStrokeColor(Color.BLACK);
-        title.setStrokeWidth(2.5);
-        addEntity(title);
+        texts.add(createText(title, TITLE_TEXT, BLACK , Color.HOTPINK));
+        texts.add(createText(subtext, TITLE_SUBTEXT, MEDIUM, Color.WHITE));
 
-        subTextX = titleX;
-        subTextY = titleY + titleFont;
-        TextEntity subText = new TextEntity(new Coordinate2D(subTextX, subTextY),TITLE_SUBTEXT);
-        subText.setFill(Color.WHITE);
-        subText.setAnchorPoint(AnchorPoint.CENTER_CENTER);
-        subText.setFont(Font.font("Roboto", FontWeight.SEMI_BOLD, 40));
-        addEntity(subText);
-
-        var startbutton = new StartButton(new Coordinate2D(getWidth() / 2 - 65, getHeight() / 2), peach, STARTBUTTON_TEXT);
-        addEntity(startbutton);
+        for(TextEntity entity : texts) {
+            addEntity(entity);
+        }
     }
 
+    TextEntity createText(Coordinate2D position, String tekst, Font font, Color kleur) {
+        TextEntity text = new TextEntity(position, tekst);
+        text.setFill(kleur);
+        text.setAnchorPoint(AnchorPoint.CENTER_CENTER);
+        text.setFont(font);
+
+        return text;
+    }
 }

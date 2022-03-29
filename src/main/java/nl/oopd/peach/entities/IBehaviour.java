@@ -1,6 +1,8 @@
 package nl.oopd.peach.entities;
 
-public interface IBehaviour {
+import com.github.hanyaeger.api.entities.Collided;
+import com.github.hanyaeger.api.entities.Collider;
 
+public interface IBehaviour extends Collider, Collided {
     public void doDamage();
 }

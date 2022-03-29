@@ -1,11 +1,22 @@
 package nl.oopd.peach.entities;
 
 import com.github.hanyaeger.api.Coordinate2D;
-import com.github.hanyaeger.api.Size;
+import com.github.hanyaeger.api.entities.DynamicCompositeEntity;
 
-public class BossEnemy extends NormalEnemy {
+public class BossEnemy extends DynamicCompositeEntity {
 
-   public BossEnemy(String resource,Coordinate2D location, int score, Size size, int rows, int columns) {
-       super(resource,location, score, size, rows, columns);
+ private int score;
+
+   public BossEnemy(Coordinate2D location, int score) {
+       super(location);
+
+       this.score = score;
    }
+
+    @Override
+    protected void setupEntities() {
+
+    }
+
+
 }

@@ -7,5 +7,8 @@ public class SpecialEnemy extends NormalEnemy{
 
     public SpecialEnemy(String resource,Coordinate2D location,int score, Size size, int rows, int columns) {
         super(resource,location, score,size, rows, columns);
+
+        setMotion(4, 270d);
+        setAutoCycle(180);
     }
 }

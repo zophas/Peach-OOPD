@@ -2,15 +2,19 @@ package nl.oopd.peach.scenes;
 
 import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
+import com.github.hanyaeger.api.entities.impl.CustomFont;
 import com.github.hanyaeger.api.entities.impl.TextEntity;
 import com.github.hanyaeger.api.scenes.StaticScene;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import nl.oopd.peach.Peach;
+import nl.oopd.peach.entities.buttons.StartButton;
 
 import java.util.ArrayList;
 
 public class StartScene extends StaticScene {
-
+    private Peach peach;
     private final String TITLE_TEXT = "PEACH";
     private final String TITLE_SUBTEXT = "A Mario sequel";
     private final String STARTSCENE_BACKGROUND = "images/StartScene_background.jpg";
@@ -18,8 +22,8 @@ public class StartScene extends StaticScene {
 
     private int titleFont = 80;
 
-    private final Font BLACK = Font.loadFont("file:nl/oopd/peach/resources/fonts/Montserrat-Black.ttf", 200);
-    private final Font MEDIUM = Font.loadFont("file:nl/oopd/peach/resources/fonts/Montserrat-Medium.ttf", 100);
+    //public CustomFont BLACK = new CustomFont("file:nl/oopd/peach/resources/fonts/Montserrat-Black.ttf", 200);
+    //private final Font MEDIUM = Font.loadFont("file:nl/oopd/peach/resources/fonts/Montserrat-Medium.ttf", 100);
 
 
     private ArrayList<TextEntity> texts = new ArrayList<>();
@@ -34,20 +38,24 @@ public class StartScene extends StaticScene {
     public void setupEntities() {
         Coordinate2D title = new Coordinate2D(getWidth() / 2, getHeight() / 2 - 200);
         Coordinate2D subtext = new Coordinate2D(getWidth() / 2, getHeight() / 2 - 200 + titleFont);
+        Coordinate2D startButtonPos = new Coordinate2D(getWidth() / 2, getHeight() / 2);
 
-        texts.add(createText(title, TITLE_TEXT, BLACK , Color.HOTPINK));
-        texts.add(createText(subtext, TITLE_SUBTEXT, MEDIUM, Color.WHITE));
+        texts.add(createText(title, TITLE_TEXT, FontWeight.BOLD, 75, Color.HOTPINK));
+        texts.add(createText(subtext, TITLE_SUBTEXT, FontWeight.MEDIUM, 40, Color.WHITE));
 
         for(TextEntity entity : texts) {
             addEntity(entity);
         }
+
+        StartButton startButton = new StartButton(startButtonPos, peach);
+        addEntity(startButton);
     }
 
-    TextEntity createText(Coordinate2D position, String tekst, Font font, Color kleur) {
+    TextEntity createText(Coordinate2D position, String tekst, FontWeight font, int fontSize, Color kleur) {
         TextEntity text = new TextEntity(position, tekst);
         text.setFill(kleur);
         text.setAnchorPoint(AnchorPoint.CENTER_CENTER);
-        text.setFont(font);
+        text.setFont(Font.font("Roboto", font, fontSize));
 
         return text;
     }

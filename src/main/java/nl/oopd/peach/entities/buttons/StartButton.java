@@ -1,5 +1,6 @@
 package nl.oopd.peach.entities.buttons;
 
+import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.impl.TextEntity;
 import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
@@ -16,10 +17,11 @@ public class StartButton extends TextEntity implements MouseButtonPressedListene
 
     private Peach peach;
 
-    public StartButton(final Coordinate2D initialLocation,final Peach peach, final String text) {
-        super(initialLocation, text);
-        setFill(Color.BLACK);
-        setFont(Font.font("Roboto", FontWeight.SEMI_BOLD, 30));
+    public StartButton(final Coordinate2D initialLocation,Peach peach) {
+        super(initialLocation, "Start game");
+        setFill(Color.WHITE);
+        setFont(Font.font("Roboto", FontWeight.SEMI_BOLD, 80));
+        setAnchorPoint(AnchorPoint.CENTER_CENTER);
 
         this.peach = peach;
     }

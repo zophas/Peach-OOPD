@@ -23,8 +23,6 @@ public class StartScene extends StaticScene {
     private final String STARTSCENE_BACKGROUND = "images/StartScene_background.jpg";
     private final String STARTSCENE_MUSIC = "audio/StartScene_music.mp3";
 
-    private final String STARTBUTTON_TEXT = "Play Game";
-
     private final int titleFont = 80;
 
     //public CustomFont BLACK = new CustomFont("file:nl/oopd/peach/resources/fonts/Montserrat-Black.ttf", 200);
@@ -56,7 +54,7 @@ public class StartScene extends StaticScene {
             addEntity(entity);
         }
 
-        StartButton startButton = new StartButton(startButtonPos, STARTBUTTON_TEXT,  peach, GAMESCENE);
+        StartButton startButton = new StartButton(startButtonPos, peach, GAMESCENE);
         addEntity(startButton);
     }
 

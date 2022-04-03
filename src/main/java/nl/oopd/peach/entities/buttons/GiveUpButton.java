@@ -9,22 +9,21 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import nl.oopd.peach.Peach;
 
-public class PauseButton extends Button{
-
+public class GiveUpButton extends Button {
     private Peach peach;
 
-    public PauseButton(Coordinate2D initialLocation, Peach peach, int scene, int buttonSize) {
-        super(initialLocation, "Pause", scene);
+    public GiveUpButton(Coordinate2D initialLocation, Peach peach, int scene, int buttonSize) {
+        super(initialLocation, "Forfeit", scene);
         this.peach = peach;
 
         setFill(Color.WHITE);
         setFont(Font.font("Roboto", FontWeight.SEMI_BOLD, buttonSize));
-        setAnchorPoint(AnchorPoint.TOP_LEFT);
+        setAnchorPoint(AnchorPoint.CENTER_CENTER);
     }
 
     @Override
     public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2d) {
-        peach.setActiveScene(3);
+        peach.setActiveScene(0);
         
     }
     

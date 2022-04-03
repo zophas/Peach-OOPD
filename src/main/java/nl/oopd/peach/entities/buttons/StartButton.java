@@ -12,8 +12,8 @@ public class StartButton extends Button {
 
     private Peach peach;
 
-    public StartButton(final Coordinate2D initialLocation, final String text, final Peach peach, final int scene) {
-        super(initialLocation,text, scene);
+    public StartButton(final Coordinate2D initialLocation, final Peach peach, final int scene) {
+        super(initialLocation,"Start game", scene);
 
         this.peach = peach;
 

@@ -9,21 +9,30 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import nl.oopd.peach.Peach;
+import nl.oopd.peach.entities.buttons.QuitButton;
 import nl.oopd.peach.entities.buttons.StartButton;
 
 import java.util.ArrayList;
 
 public class StartScene extends StaticScene {
     private Peach peach;
+    private final int GAMESCENE = 1;
+
     private final String TITLE_TEXT = "PEACH";
     private final String TITLE_SUBTEXT = "A Mario sequel";
     private final String STARTSCENE_BACKGROUND = "images/StartScene_background.jpg";
     private final String STARTSCENE_MUSIC = "audio/StartScene_music.mp3";
 
-    private int titleFont = 80;
+    private final String STARTBUTTON_TEXT = "Play Game";
+
+    private final int titleFont = 80;
 
     //public CustomFont BLACK = new CustomFont("file:nl/oopd/peach/resources/fonts/Montserrat-Black.ttf", 200);
     //private final Font MEDIUM = Font.loadFont("file:nl/oopd/peach/resources/fonts/Montserrat-Medium.ttf", 100);
+
+    public StartScene(Peach peach){
+        this.peach = peach;
+    }
 
 
     private ArrayList<TextEntity> texts = new ArrayList<>();
@@ -47,16 +56,16 @@ public class StartScene extends StaticScene {
             addEntity(entity);
         }
 
-        StartButton startButton = new StartButton(startButtonPos, peach);
+        StartButton startButton = new StartButton(startButtonPos, STARTBUTTON_TEXT,  peach, GAMESCENE);
         addEntity(startButton);
     }
 
-    TextEntity createText(Coordinate2D position, String tekst, FontWeight font, int fontSize, Color kleur) {
-        TextEntity text = new TextEntity(position, tekst);
-        text.setFill(kleur);
-        text.setAnchorPoint(AnchorPoint.CENTER_CENTER);
-        text.setFont(Font.font("Roboto", font, fontSize));
+    TextEntity createText(Coordinate2D position, String text, FontWeight font, int fontSize, Color textColor) {
+        TextEntity newtext = new TextEntity(position, text);
+        newtext.setFill(textColor);
+        newtext.setAnchorPoint(AnchorPoint.CENTER_CENTER);
+        newtext.setFont(Font.font("Roboto", font, fontSize));
 
-        return text;
+        return newtext;
     }
 }

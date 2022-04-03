@@ -8,10 +8,12 @@ import com.github.hanyaeger.api.scenes.StaticScene;
 
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import nl.oopd.peach.Peach;
 
 public class EndScene extends StaticScene {
     private Peach peach;
+    private int Score;
     
     private final String END_TEXT = "";
     private final String HIGH_SCORE = "High score: ";
@@ -21,7 +23,7 @@ public class EndScene extends StaticScene {
     private final String STARTSCENE_BACKGROUND = "images/StartScene_background.jpg";
     private final String STARTSCENE_MUSIC = "audio/StartScene_music.mp3";
 
-    private int titleFont = 80;
+    private final int titleFont = 80;
 
     private final Font BLACK = Font.loadFont("file:nl/oopd/peach/resources/fonts/Montserrat-Black.ttf", 200);
     private final Font MEDIUM = Font.loadFont("file:nl/oopd/peach/resources/fonts/Montserrat-Medium.ttf", 100);
@@ -45,12 +47,12 @@ public class EndScene extends StaticScene {
         
     }
 
-    TextEntity createText(Coordinate2D position, String tekst, Font font, Color kleur) {
-        TextEntity text = new TextEntity(position, tekst);
-        text.setFill(kleur);
-        text.setAnchorPoint(AnchorPoint.CENTER_CENTER);
-        text.setFont(font);
+    TextEntity createText(Coordinate2D position, String text, FontWeight font, int fontSize, Color textColor) {
+        TextEntity newtext = new TextEntity(position, text);
+        newtext.setFill(textColor);
+        newtext.setAnchorPoint(AnchorPoint.CENTER_CENTER);
+        newtext.setFont(Font.font("Roboto", font, fontSize));
 
-        return text;
+        return newtext;
     }
 }

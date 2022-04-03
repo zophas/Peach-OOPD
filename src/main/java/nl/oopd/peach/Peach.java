@@ -32,8 +32,8 @@ public class Peach extends YaegerGame {
     public void setupScenes()
     {
         addScene(START, new StartScene(this));
-        addScene(GAME, new GameLevel());
-        addScene(BOSS, new BossLevel());
+        addScene(GAME, new GameLevel(this));
+        addScene(BOSS, new BossLevel(this));
     }
 
     @Override

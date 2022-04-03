@@ -6,4 +6,5 @@ module nl.oopd.peach {
     opens audio;
     opens images;
     exports nl.oopd.peach;
+    exports nl.oopd.peach.entities.Gameobjects.Tiles.Tilemap;
 }

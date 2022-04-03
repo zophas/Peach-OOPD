@@ -10,13 +10,13 @@ import com.github.hanyaeger.api.scenes.SceneBorder;
 public class NormalEnemy extends DynamicSpriteEntity implements IBehaviour,SceneBorderCrossingWatcher {
 
     private int score, health, attack;
-    private Size size;
+    private Size enemySize;
 
-    public NormalEnemy(String resource, Coordinate2D location, int score, Size size, int rows, int columns) {
-        super(resource, location, size, rows, columns);
+    public NormalEnemy(String resource, Coordinate2D location, int score, Size enemySize, int rows, int columns) {
+        super(resource, location, enemySize, rows, columns);
 
         this.score = score;
-        this.size = size;
+        this.enemySize = enemySize;
 
         setMotion(3, 270d);
         setAutoCycle(180);
@@ -25,6 +25,13 @@ public class NormalEnemy extends DynamicSpriteEntity implements IBehaviour,Scene
     @Override
     public void doDamage() {
         health -= attack;
+    }
+
+    @Override
+    public void isDying() {
+        if(health == 0){
+            remove();
+        }
     }
 
     @Override

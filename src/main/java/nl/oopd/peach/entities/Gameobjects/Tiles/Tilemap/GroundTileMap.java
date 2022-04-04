@@ -1,12 +1,8 @@
 package nl.oopd.peach.entities.Gameobjects.Tiles.Tilemap;
 
-import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.scenes.TileMap;
-import javafx.scene.Node;
 
-import java.util.Optional;
-
-public class GroundTileMap extends TileMap implements Collider {
+public class GroundTileMap extends TileMap {
 
     @Override
     public void setupEntities() {
@@ -46,9 +42,5 @@ public class GroundTileMap extends TileMap implements Collider {
         };
     }
 
-    @Override
-    public Optional<? extends Node> getNode() {
-        return Optional.empty();
-    }
 }
 

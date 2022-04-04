@@ -13,7 +13,6 @@ import com.github.hanyaeger.api.scenes.TileMapContainer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 import nl.oopd.peach.Peach;
 import nl.oopd.peach.entities.NormalEnemy;
 import nl.oopd.peach.entities.Player;
@@ -28,8 +27,8 @@ public class GameLevel extends DynamicScene implements TileMapContainer {
     
     private int buttonSize = 30;
     private final int GAP = 100;
-    private final int NORMALENEMYPOS = 137;
-    private final int SPECIALENEMYPOS = 187;
+    private final int NORMALENEMYPOS = 100;
+    private final int SPECIALENEMYPOS = 150;
 
     private final String GAMELEVEL_BACKGROUND = "images/GameLevel_Background.png";
     private final String GAMESCENE_MUSIC = "audio/GameScene_music.mp3";

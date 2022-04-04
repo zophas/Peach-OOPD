@@ -5,7 +5,7 @@ import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.SceneBorderTouchingWatcher;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 
-public class SpecialEnemy extends NormalEnemy implements SceneBorderTouchingWatcher{
+public class SpecialEnemy extends NormalEnemy implements IBehaviour{
 
     private final double specialEnemySpeed = 3.5;
     private final double specialEnemyDirection = 270;

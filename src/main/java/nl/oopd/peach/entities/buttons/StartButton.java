@@ -12,8 +12,8 @@ public class StartButton extends Button {
 
     private Peach peach;
 
-    public StartButton(final Coordinate2D initialLocation, final String text, final Peach peach, final int scene) {
-        super(initialLocation,text, scene);
+    public StartButton(Coordinate2D initialLocation, Peach peach, int scene) {
+        super(initialLocation,"Start game", scene);
 
         this.peach = peach;
 
@@ -26,4 +26,4 @@ public class StartButton extends Button {
     public void onMouseButtonPressed(MouseButton mouseButton, Coordinate2D coordinate2D) {
         peach.setActiveScene(1);
     }
-}
+} 

@@ -2,8 +2,10 @@ package nl.oopd.peach.entities;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
+import com.github.hanyaeger.api.entities.SceneBorderTouchingWatcher;
+import com.github.hanyaeger.api.scenes.SceneBorder;
 
-public class SpecialEnemy extends NormalEnemy{
+public class SpecialEnemy extends NormalEnemy implements SceneBorderTouchingWatcher{
 
     private final double specialEnemySpeed = 3.5;
     private final double specialEnemyDirection = 270;
@@ -15,4 +17,5 @@ public class SpecialEnemy extends NormalEnemy{
         setMotion(specialEnemySpeed, specialEnemyDirection);
         setAutoCycle(specialEnemyFPS);
     }
+   
 }

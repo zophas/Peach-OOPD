@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Set;
 
+
+
 public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListener, SceneBorderTouchingWatcher, Newtonian {
 
     //sets the speed for the player
@@ -25,6 +27,7 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
 
     public Player(String resource,Coordinate2D location) {
         super(resource, location, new Size(80, 200), 1, 4);
+      
 
     }
 
@@ -102,4 +105,5 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
 
         health--;
     }
+
 }

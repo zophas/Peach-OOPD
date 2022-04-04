@@ -22,6 +22,7 @@ import nl.oopd.peach.entities.buttons.PauseButton;
 
 public class GameLevel extends DynamicScene implements TileMapContainer {
     private Peach peach;
+    static boolean gameWon = false;
 
     private final int PAUSESCREEN = 3;
     
@@ -33,9 +34,13 @@ public class GameLevel extends DynamicScene implements TileMapContainer {
     private final String GAMELEVEL_BACKGROUND = "images/GameLevel_Background.png";
     private final String GAMESCENE_MUSIC = "audio/GameScene_music.mp3";
     
-    
+    static int highScore;
     private final String SCORE  = "Score: ";
-    public int score = 0;
+    static int score = 0;
+    private String scoreString = String.valueOf(score);
+    private final String LIVES = "Lives: ";
+    static int lives = 3;
+    private String livesString = String.valueOf(lives);
     
     private ArrayList<TextEntity> texts = new ArrayList<>();
 
@@ -54,11 +59,16 @@ public class GameLevel extends DynamicScene implements TileMapContainer {
         Coordinate2D pauseBttn = new Coordinate2D(0, 0);
         Coordinate2D scoreTxt = new Coordinate2D(0 + GAP, 0);
         Coordinate2D scorePos = new Coordinate2D(0 + GAP * 2, 0);
+        Coordinate2D livesTxt = new Coordinate2D(0 + GAP, buttonSize);
+        Coordinate2D livesPos = new Coordinate2D(0 + GAP * 2, buttonSize);
 
         PauseButton pauseButton = new PauseButton(pauseBttn, peach, PAUSESCREEN, buttonSize);
         addEntity(pauseButton);
 
         texts.add(createText(scoreTxt, SCORE, FontWeight.BOLD, buttonSize, Color.WHITE));
+        texts.add(createText(scorePos, scoreString, FontWeight.BOLD, buttonSize, Color.WHITE));
+        texts.add(createText(livesTxt, LIVES, FontWeight.BOLD, buttonSize, Color.WHITE));
+        texts.add(createText(livesPos, livesString, FontWeight.BOLD, buttonSize, Color.WHITE));
         
         for (TextEntity entity : texts) {
             addEntity(entity);
@@ -93,8 +103,24 @@ TextEntity createText(Coordinate2D position, String text, FontWeight font, int f
     return newtext;
     }
 
-void createScore(Coordinate2D position, int score, FontWeight font, int fontSize, Color textColor) {
+public static boolean getGameWon() {
+    return gameWon;
     
+}
+
+public static int getScore() {
+    return score;
+}
+
+public static int getLives() {
+    return lives;
+}
+
+public static int getHighScore() {
+    if (score > highScore) {
+        highScore = score;
+    }
+    return highScore;
 }
 }
 

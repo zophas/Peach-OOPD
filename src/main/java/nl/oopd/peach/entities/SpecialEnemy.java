@@ -17,5 +17,11 @@ public class SpecialEnemy extends NormalEnemy implements IBehaviour{
         setMotion(specialEnemySpeed, specialEnemyDirection);
         setAutoCycle(specialEnemyFPS);
     }
+
+    @Override
+    public void notifyBoundaryTouching(SceneBorder border) {
+        // TODO Auto-generated method stub
+        
+    }
    
 }

@@ -37,6 +37,8 @@ public class GameLevel extends DynamicScene implements TileMapContainer {
     
     private final String SCORE  = "Score: ";
     public int score = 0;
+    private final String LIVES = "Lives: ";
+    public int lives = 0;
     
     private ArrayList<TextEntity> texts = new ArrayList<>();
 
@@ -55,11 +57,14 @@ public class GameLevel extends DynamicScene implements TileMapContainer {
         Coordinate2D pauseBttn = new Coordinate2D(0, 0);
         Coordinate2D scoreTxt = new Coordinate2D(0 + GAP, 0);
         Coordinate2D scorePos = new Coordinate2D(0 + GAP * 2, 0);
+        Coordinate2D livesTxt = new Coordinate2D(0 + GAP, buttonSize);
+        Coordinate2D livesPos = new Coordinate2D(0 + GAP * 2, buttonSize);
 
         PauseButton pauseButton = new PauseButton(pauseBttn, peach, PAUSESCREEN, buttonSize);
         addEntity(pauseButton);
 
         texts.add(createText(scoreTxt, SCORE, FontWeight.BOLD, buttonSize, Color.WHITE));
+        texts.add(createText(livesTxt, LIVES, FontWeight.BOLD, buttonSize, Color.WHITE));
         
         for (TextEntity entity : texts) {
             addEntity(entity);

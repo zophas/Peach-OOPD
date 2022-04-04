@@ -60,10 +60,6 @@ public class EndScene extends StaticScene {
             endText = "You lost, loser";
         }
     
-        
-        
-       
-
         Coordinate2D endTxt = new Coordinate2D(getWidth() / 2, getHeight() / 2 - SPACING);
         Coordinate2D highScoretxt = new Coordinate2D(getWidth() / 2 - 100, getHeight() / 2 - SPACING + titleFont);
         Coordinate2D highScoreNmr = new Coordinate2D(getWidth() / 2 + 100, getHeight() / 2 - SPACING + titleFont);

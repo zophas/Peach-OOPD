@@ -104,10 +104,6 @@ TextEntity createText(Coordinate2D position, String text, FontWeight font, int f
     return newtext;
     }
 
-void createScore(Coordinate2D position, int score, FontWeight font, int fontSize, Color textColor) {
-    
-}
-
 public static boolean getGameWon() {
     return gameWon;
     

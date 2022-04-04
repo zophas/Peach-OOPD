@@ -20,12 +20,16 @@ import nl.oopd.peach.entities.buttons.ResumeButton;
 public class PauseScreen extends StaticScene {
     private Peach peach;
     private int buttonSize = 50;
+    private int fontSize = 50;
+    private int titleFont = 90;
     private final int GAMESCENE = 1;
     private final int STARTSCENE = 0;
     private final String STARTSCENE_MUSIC = "audio/StartScene_music.mp3";
 
     private final String TITLE_TEXT = "Pause";
     private final String SCORE = "Score: ";
+    private int score = GameLevel.getScore();
+    String scoreString = String.valueOf(score);
     
     private ArrayList<TextEntity> texts = new ArrayList<>();
 
@@ -44,12 +48,14 @@ public class PauseScreen extends StaticScene {
     public void setupEntities() {
         Coordinate2D title = new Coordinate2D(getWidth() / 2, getHeight() / 2 - 200);
         Coordinate2D score = new Coordinate2D(getWidth() / 2 - 100, getHeight() / 2 - 100);
+        Coordinate2D scoreNmr = new Coordinate2D(getWidth() / 2 + 100, getHeight() / 2 - 100);
         Coordinate2D resumeBttn = new Coordinate2D(getWidth() / 2, getHeight() / 2);
         Coordinate2D giveUpBttn = new Coordinate2D(getWidth() / 2, getHeight() / 2 + 100);
         Coordinate2D quitBttn = new Coordinate2D(getWidth() / 2, getHeight() / 2 + 200);
 
-        texts.add(createText(score, SCORE, FontWeight.BOLD, 50, Color.WHITE));
-        texts.add(createText(title, TITLE_TEXT, FontWeight.BOLD, 90, Color.HOTPINK));
+        texts.add(createText(score, SCORE, FontWeight.BOLD, fontSize, Color.WHITE));
+        texts.add(createText(scoreNmr, scoreString, FontWeight.BOLD, fontSize, Color.WHITE));
+        texts.add(createText(title, TITLE_TEXT, FontWeight.BOLD, titleFont, Color.HOTPINK));
         for (TextEntity entity : texts) {
             addEntity(entity);
         }

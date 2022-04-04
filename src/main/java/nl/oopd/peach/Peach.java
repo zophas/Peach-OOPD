@@ -8,8 +8,9 @@ import nl.oopd.peach.scenes.GameLevel;
 import nl.oopd.peach.scenes.PauseScreen;
 import nl.oopd.peach.scenes.StartScene;
 
-public class Peach extends YaegerGame {
 
+public class Peach extends YaegerGame {
+    
     //constants for screen size and Game Title
     private final String GAMETITLE = "Peach - A Mario Sequel";
     private final Size SIZE = new Size(1280, 720);
@@ -17,6 +18,7 @@ public class Peach extends YaegerGame {
     //constants for scenes
     private final int STARTSCENE = 0, GAMESCENE = 1, BOSSSCENE = 2, PAUSESCREEN = 3, ENDSCENE = 4;
 
+    
     public static void main(String[] args) {
         launch(args);
     }

@@ -23,6 +23,7 @@ import nl.oopd.peach.entities.buttons.PauseButton;
 
 public class GameLevel extends DynamicScene implements TileMapContainer {
     private Peach peach;
+    static boolean gameWon = false;
 
     private final int PAUSESCREEN = 3;
     
@@ -34,11 +35,11 @@ public class GameLevel extends DynamicScene implements TileMapContainer {
     private final String GAMELEVEL_BACKGROUND = "images/GameLevel_Background.png";
     private final String GAMESCENE_MUSIC = "audio/GameScene_music.mp3";
     
-    
+    static int highScore;
     private final String SCORE  = "Score: ";
-    public int score = 0;
+    static int score = 10;
     private final String LIVES = "Lives: ";
-    public int lives = 0;
+    static int lives = 0;
     
     private ArrayList<TextEntity> texts = new ArrayList<>();
 
@@ -101,6 +102,26 @@ TextEntity createText(Coordinate2D position, String text, FontWeight font, int f
 
 void createScore(Coordinate2D position, int score, FontWeight font, int fontSize, Color textColor) {
     
+}
+
+public static boolean getGameWon() {
+    return gameWon;
+    
+}
+
+public static int getScore() {
+    return score;
+}
+
+public static int getLives() {
+    return lives;
+}
+
+public static int getHighScore() {
+    if (score > highScore) {
+        highScore = score;
+    }
+    return highScore;
 }
 }
 

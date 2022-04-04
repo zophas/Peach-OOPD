@@ -3,6 +3,7 @@ package nl.oopd.peach;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.YaegerGame;
 import nl.oopd.peach.scenes.BossLevel;
+import nl.oopd.peach.scenes.EndScene;
 import nl.oopd.peach.scenes.GameLevel;
 import nl.oopd.peach.scenes.PauseScreen;
 import nl.oopd.peach.scenes.StartScene;
@@ -14,11 +15,7 @@ public class Peach extends YaegerGame {
     private final Size SIZE = new Size(1280, 720);
 
     //constants for scenes
-    private final int START = 0;
-    private final int GAME = 1;
-    private final int BOSS = 2;
-    private final int PAUSE = 3;
-
+    private final int STARTSCENE = 0, GAMESCENE = 1, BOSSSCENE = 2, PAUSESCREEN = 3, ENDSCENE = 4;
 
     public static void main(String[] args) {
         launch(args);
@@ -33,10 +30,11 @@ public class Peach extends YaegerGame {
     @Override
     public void setupScenes()
     {
-        addScene(START, new StartScene(this));
-        addScene(GAME, new GameLevel(this));
-        addScene(BOSS, new BossLevel(this));
-        addScene(PAUSE, new PauseScreen(this));
+        addScene(STARTSCENE, new StartScene(this));
+        addScene(GAMESCENE, new GameLevel(this));
+        addScene(BOSSSCENE, new BossLevel(this));
+        addScene(PAUSESCREEN, new PauseScreen(this));
+        addScene(ENDSCENE, new EndScene(this));
     }
 
     @Override

@@ -34,6 +34,17 @@ public class NormalEnemy extends DynamicSpriteEntity implements IBehaviour,Scene
         }
     }
 
+    
+    public void notifyBoundaryTouching(SceneBorder border) {
+        setSpeed(0);
+
+        switch(border) {
+            case TOP:
+                remove();
+        }
+        
+    }
+
     @Override
     public void notifyBoundaryCrossing(SceneBorder sceneBorder) {
         setAnchorLocationX(getSceneWidth());

@@ -17,15 +17,5 @@ public class SpecialEnemy extends NormalEnemy implements SceneBorderTouchingWatc
         setMotion(specialEnemySpeed, specialEnemyDirection);
         setAutoCycle(specialEnemyFPS);
     }
-
-    @Override
-    public void notifyBoundaryTouching(SceneBorder border) {
-        setSpeed(0);
-
-        switch (border) {
-            case TOP:
-                setAnchorLocationY(1);
-                break;
-        }
-    }
+   
 }

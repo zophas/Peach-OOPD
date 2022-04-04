@@ -24,6 +24,6 @@ public class StartButton extends Button {
 
     @Override
     public void onMouseButtonPressed(MouseButton mouseButton, Coordinate2D coordinate2D) {
-        peach.setActiveScene(2);
+        peach.setActiveScene(1);
     }
 } 

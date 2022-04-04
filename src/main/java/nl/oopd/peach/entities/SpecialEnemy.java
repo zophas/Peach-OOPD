@@ -2,8 +2,6 @@ package nl.oopd.peach.entities;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
-import com.github.hanyaeger.api.entities.SceneBorderTouchingWatcher;
-import com.github.hanyaeger.api.scenes.SceneBorder;
 
 public class SpecialEnemy extends NormalEnemy implements IBehaviour{
 
@@ -17,11 +15,4 @@ public class SpecialEnemy extends NormalEnemy implements IBehaviour{
         setMotion(specialEnemySpeed, specialEnemyDirection);
         setAutoCycle(specialEnemyFPS);
     }
-
-    @Override
-    public void notifyBoundaryTouching(SceneBorder border) {
-        // TODO Auto-generated method stub
-        
-    }
-   
 }

@@ -37,9 +37,11 @@ public class GameLevel extends DynamicScene implements TileMapContainer {
     
     static int highScore;
     private final String SCORE  = "Score: ";
-    static int score = 10;
+    static int score = 0;
+    private String scoreString = String.valueOf(score);
     private final String LIVES = "Lives: ";
-    static int lives = 0;
+    static int lives = 3;
+    private String livesString = String.valueOf(lives);
     
     private ArrayList<TextEntity> texts = new ArrayList<>();
 
@@ -65,7 +67,9 @@ public class GameLevel extends DynamicScene implements TileMapContainer {
         addEntity(pauseButton);
 
         texts.add(createText(scoreTxt, SCORE, FontWeight.BOLD, buttonSize, Color.WHITE));
+        texts.add(createText(scorePos, scoreString, FontWeight.BOLD, buttonSize, Color.WHITE));
         texts.add(createText(livesTxt, LIVES, FontWeight.BOLD, buttonSize, Color.WHITE));
+        texts.add(createText(livesPos, livesString, FontWeight.BOLD, buttonSize, Color.WHITE));
         
         for (TextEntity entity : texts) {
             addEntity(entity);

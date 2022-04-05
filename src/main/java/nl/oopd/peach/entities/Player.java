@@ -18,10 +18,10 @@ import nl.oopd.peach.scenes.GameLevel;
 import nl.oopd.peach.scenes.GameWon;
 
 
-public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListener, SceneBorderTouchingWatcher, Newtonian, Health {
+public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListener, SceneBorderTouchingWatcher, Newtonian {
     
     public int[] constraint = {
-        
+
     };
 
     public int gameWon;
@@ -30,7 +30,7 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
     private Peach peach;
     public int health;
     public int score;
-    public int highScore = Score.highScore;
+   
     //sets the speed for the player
     private final double PLAYER_SPEED = 4;
  
@@ -72,7 +72,8 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
         } else if (pressedKeys.isEmpty()) {
             setSpeed(0);
         }
-    }
+
+   }
 
     @Override
     public void notifyBoundaryTouching(SceneBorder border) {
@@ -151,12 +152,6 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
 
     @Override
     public void doDamage() {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void changeHealth(int health) {
         // TODO Auto-generated method stub
         
     }

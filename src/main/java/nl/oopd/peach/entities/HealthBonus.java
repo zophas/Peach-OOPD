@@ -17,9 +17,9 @@ import javafx.scene.Node;
 import nl.oopd.peach.Peach;
 import nl.oopd.peach.scenes.GameLevel;
 
-public class HealthBonus extends DynamicSpriteEntity implements IBehaviour, SceneBorderCrossingWatcher, Health {
+public class HealthBonus extends DynamicSpriteEntity implements IBehaviour, SceneBorderCrossingWatcher {
     
-    public int health = Health.health;
+   
     public HealthBonus(String resource, Coordinate2D initialLocation, Size healthFoodSize) {
         super(resource, initialLocation, healthFoodSize);
         //TODO Auto-generated constructor stub
@@ -95,18 +95,5 @@ public class HealthBonus extends DynamicSpriteEntity implements IBehaviour, Scen
         // TODO Auto-generated method stub
         
     }
-
-
-
-    @Override
-    public void changeHealth(int health) {
-        // TODO Auto-generated method stub
-        
-    }
-
-
-
-    
-
    
 }

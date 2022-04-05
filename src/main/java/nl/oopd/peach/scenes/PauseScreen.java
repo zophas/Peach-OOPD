@@ -7,15 +7,11 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.impl.TextEntity;
 import com.github.hanyaeger.api.scenes.StaticScene;
 
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import nl.oopd.peach.Peach;
-import nl.oopd.peach.entities.Player;
-import nl.oopd.peach.entities.Score;
 import nl.oopd.peach.entities.buttons.GiveUpButton;
-import nl.oopd.peach.entities.buttons.PauseButton;
 import nl.oopd.peach.entities.buttons.QuitButton;
 import nl.oopd.peach.entities.buttons.ResumeButton;
 

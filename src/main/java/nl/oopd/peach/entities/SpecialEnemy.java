@@ -11,8 +11,7 @@ import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.media.SoundClip;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 
-public class SpecialEnemy extends DynamicSpriteEntity implements IBehaviour,SceneBorderCrossingWatcher, Health {
-    public int health = Health.health;
+public class SpecialEnemy extends DynamicSpriteEntity implements IBehaviour,SceneBorderCrossingWatcher {
  
     private Size enemySize;
     private int newXPos = 1280;
@@ -20,7 +19,6 @@ public class SpecialEnemy extends DynamicSpriteEntity implements IBehaviour,Scen
     private final double ENEMYSPEED = 3;
     private final double ENEMYDIRECTION = 270d;
     private final long ENEMYINTERVAL = 180;
-
  
     public SpecialEnemy(String resource, Coordinate2D location, Size enemySize, int rows, int columns) {
         super(resource, location, enemySize, rows, columns);
@@ -35,7 +33,6 @@ public class SpecialEnemy extends DynamicSpriteEntity implements IBehaviour,Scen
     public void doDamage(){
 
     }
-
 
     @Override
     public void notifyBoundaryCrossing(SceneBorder sceneBorder) {
@@ -58,13 +55,6 @@ public class SpecialEnemy extends DynamicSpriteEntity implements IBehaviour,Scen
         // TODO Auto-generated method stub
         
     }
-
-    @Override
-    public void changeHealth(int health) {
-        // TODO Auto-generated method stub
-        
-    }
-
   
 }
 

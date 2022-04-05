@@ -13,26 +13,22 @@ import com.github.hanyaeger.api.scenes.TileMapContainer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 import nl.oopd.peach.Peach;
-import nl.oopd.peach.entities.Health;
 import nl.oopd.peach.entities.HealthBonus;
 import nl.oopd.peach.entities.NormalEnemy;
 import nl.oopd.peach.entities.Player;
-import nl.oopd.peach.entities.Score;
 import nl.oopd.peach.entities.SpecialEnemy;
 import nl.oopd.peach.entities.Gameobjects.Tiles.Tilemap.GroundTileMap;
 import nl.oopd.peach.entities.buttons.PauseButton;
 
-public class GameLevel extends DynamicScene implements TileMapContainer, Health {
+public class GameLevel extends DynamicScene implements TileMapContainer {
     private Peach peach;
   
     public Player princessPeach;
     TextEntity healthText;
     TextEntity scoreText;
     
-    public int health = Health.health;
-    public int score = Score.score;
+    public int score;
     public ArrayList<HealthBonus> healthFood = new ArrayList<>();
     
     private int buttonSize = 30;
@@ -44,9 +40,7 @@ public class GameLevel extends DynamicScene implements TileMapContainer, Health 
     private final String GAMESCENE_MUSIC = "audio/GameScene_music.mp3";
     private final String HEALTH_FOOD = "images/health.png";
     
-    static int highScore;
     private final String SCORE  = "Score: ";
-    private String scoreString = String.valueOf(score);
     private final String LIVES = "Health: ";
     
     private ArrayList<TextEntity> texts = new ArrayList<>();
@@ -122,12 +116,6 @@ public TextEntity createText(Coordinate2D position, String text, FontWeight font
     return newtext;
     }
 
-
-@Override
-public void changeHealth(int health) {
-    // TODO Auto-generated method stub
-    
-}
 
     public void updateHealth() {
         healthText.setText(" " + peach.princessPeach.health);

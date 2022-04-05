@@ -76,6 +76,17 @@ public class PauseScreen extends StaticScene {
         addEntity(quitButton);
     }
 
+    /**
+     * Is de functie om de tekst te maken, zodat alle tekst hetzelfde eruit ziet en 
+     * efficient kan worden toegevoegd met zo min mogelijk dubbele code.
+     * @author Timoy van Balkom
+     * @param position
+     * @param text
+     * @param font
+     * @param fontSize
+     * @param textColor
+     * @return
+     */
     TextEntity createText(Coordinate2D position, String text, FontWeight font, int fontSize, Color textColor) {
         TextEntity newtext = new TextEntity(position, text);
         newtext.setFill(textColor);

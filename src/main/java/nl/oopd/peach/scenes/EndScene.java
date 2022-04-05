@@ -55,8 +55,7 @@ public class EndScene extends StaticScene {
         if (peach.princessPeach.gameWon == 1) {
             endText = "You won!";
          } else {
-             endText = "Game over";
-            
+             endText = "Game over"; 
          }
     
         Coordinate2D endTxt = new Coordinate2D(getWidth() / 2, getHeight() / 2 - SPACING);
@@ -74,12 +73,14 @@ public class EndScene extends StaticScene {
         scoreText.setAnchorPoint(AnchorPoint.CENTER_CENTER);
         scoreText.setFont(Font.font("Roboto", FontWeight.BOLD, fontSize));
         addEntity(scoreText);
+
         texts.add(createText(healthtxt, HEALTH, FontWeight.MEDIUM, fontSize, Color.RED));
         healthText = new TextEntity(healthPos, "" + peach.princessPeach.health);
         healthText.setFill(Color.RED);
         healthText.setAnchorPoint(AnchorPoint.CENTER_CENTER);
         healthText.setFont(Font.font("Roboto", FontWeight.BOLD, fontSize));
         addEntity(healthText);
+
         for (TextEntity entity : texts) {
             addEntity(entity);  
         }
@@ -91,7 +92,17 @@ public class EndScene extends StaticScene {
         
        
     }
-
+    /**
+     * Is de functie om de tekst te maken, zodat alle tekst hetzelfde eruit ziet en 
+     * efficient kan worden toegevoegd met zo min mogelijk dubbele code.
+     * @author Timoy van Balkom
+     * @param position
+     * @param text
+     * @param font
+     * @param fontSize
+     * @param textColor
+     * @return
+     */
     TextEntity createText(Coordinate2D position, String text, FontWeight font, int fontSize, Color textColor) {
         TextEntity newtext = new TextEntity(position, text);
         newtext.setFill(textColor);

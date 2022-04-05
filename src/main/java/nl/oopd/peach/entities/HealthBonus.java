@@ -18,14 +18,11 @@ import nl.oopd.peach.Peach;
 import nl.oopd.peach.scenes.GameLevel;
 
 public class HealthBonus extends DynamicSpriteEntity implements IBehaviour, SceneBorderCrossingWatcher {
-    
-   
+       
     public HealthBonus(String resource, Coordinate2D initialLocation, Size healthFoodSize) {
         super(resource, initialLocation, healthFoodSize);
         //TODO Auto-generated constructor stub
     }
-
-   
 
     @Override
     public void onCollision(Collider collider) {

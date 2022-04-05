@@ -96,6 +96,10 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
         }
     }
 
+    /**
+     * Als score 50 is zet hij game op gewonnen en veranderd active scene naar endScene
+     * @author Timoy van Balkom
+     */
     public void gameWon() {
         if (score >= 50) {
             gameWon = 1;
@@ -104,7 +108,6 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
         }
     }
    
-
     @Override
     public void isDying() {
         if (health <= 0) {
@@ -156,11 +159,20 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
         
     }
 
-
+    /**
+     * Zet de currentroom naar de gameLevel die als parameter wordt meegegeven.
+     * Hiermee kun je de gamelevel meegeven om de tekst realtime te updaten
+     * @author Timoy van Balkom
+     * @param gameLevel
+     */
     public void setCurrentRoom(GameLevel gameLevel) {
         currentroom = gameLevel;
     }
 
+    /**
+     * Reset de score en health wanneer de game opnieuw gestart wordt.
+     * @author Timoy van Balkom
+     */
     public void resetGame() {
         score = 0;
         health = 25;

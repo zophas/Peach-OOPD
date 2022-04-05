@@ -92,7 +92,7 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
     }
 
     /**
-     * Als score 50 is zet hij game op gewonnen en veranderd active scene naar endScene
+     * Als score 25 is zet hij game op gewonnen en veranderd active scene naar endScene
      * @author Timoy van Balkom
      */
     public void gameWon() {

@@ -18,10 +18,12 @@ import nl.oopd.peach.scenes.GameLevel;
 
 
 public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListener, SceneBorderTouchingWatcher, Newtonian {
+    public final double UP = 180d;
+    public final double DOWN = 360d;
+    public final double LEFT = 270d;
+    public final double RIGHT = 90d;
     
-    public int[] constraint = {
-
-    };
+    public int constraintY = 720 - 100;
 
     public int gameWon;
 
@@ -48,27 +50,21 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
 
     @Override
     public void onPressedKeysChange(Set<KeyCode> pressedKeys) {
-        if (pressedKeys.contains(KeyCode.LEFT) || pressedKeys.contains(KeyCode.A)) {
-            setMotion(PLAYER_SPEED, 270d);
+        if (pressedKeys.contains(KeyCode.A)) {
+            setMotion(PLAYER_SPEED, LEFT);
             setCurrentFrameIndex(1);
-
-        } else if (pressedKeys.contains(KeyCode.RIGHT) || pressedKeys.contains(KeyCode.D)) {
-            setMotion(PLAYER_SPEED, 90d);
+        } else if (pressedKeys.contains(KeyCode.D)) {
+            setMotion(PLAYER_SPEED, RIGHT);
             setCurrentFrameIndex(2);
-
-        } else if (pressedKeys.contains(KeyCode.UP) || pressedKeys.contains(KeyCode.SPACE) || pressedKeys.contains(KeyCode.W)) {
-
-            setMotion(PLAYER_SPEED, 180d);
+        } else if (pressedKeys.contains(KeyCode.W)) {
+            setMotion(PLAYER_SPEED, UP);
             setCurrentFrameIndex(3);
-
-        } else if (pressedKeys.contains(KeyCode.DOWN) || pressedKeys.contains(KeyCode.S)) {
-            setMotion(PLAYER_SPEED, 360d);
+        } else if (pressedKeys.contains(KeyCode.S)) {
+            setMotion(PLAYER_SPEED, DOWN);
             setCurrentFrameIndex(4);
+        }
 
-   
-
-
-        } else if (pressedKeys.isEmpty()) {
+        else if (pressedKeys.isEmpty()) {
             setSpeed(0);
         }
 
@@ -100,7 +96,7 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
      * @author Timoy van Balkom
      */
     public void gameWon() {
-        if (score >= 50) {
+        if (score >= 25) {
             gameWon = 1;
             peach.setActiveScene(4);
             System.out.println("check" + gameWon);
@@ -138,7 +134,7 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
             playerSound.play();
         } else if (collider instanceof HealthBonus) {
             health += 10;
-            score -= 1;
+            score -= 2;
             currentroom.updateHealth();
             currentroom.updateScore();
             var playerSound = new SoundClip("audio/player_hurt.mp3");

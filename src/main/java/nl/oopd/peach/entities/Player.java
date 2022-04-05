@@ -21,7 +21,7 @@ import nl.oopd.peach.scenes.GameWon;
 public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListener, SceneBorderTouchingWatcher, Newtonian, Health {
     
     public int[] constraint = {
-
+        
     };
 
     public int gameWon;
@@ -121,6 +121,7 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
             health -= 5;
             score += 1;
             currentroom.updateHealth();
+            currentroom.updateScore();
             System.out.println("You Collided with enemy!");
             var playerSound = new SoundClip("audio/player_hurt.mp3");
             playerSound.play();
@@ -128,21 +129,18 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
             health -= 10;
             score += 3;
             currentroom.updateHealth();
+            currentroom.updateScore();
             System.out.println("You Collided with special enemy!");
             var playerSound = new SoundClip("audio/player_hurt.mp3");
             playerSound.play();
         } else if (collider instanceof HealthBonus) {
             health += 10;
-            score += 1;
+            score -= 1;
             currentroom.updateHealth();
+            currentroom.updateScore();
             var playerSound = new SoundClip("audio/player_hurt.mp3");
             playerSound.play();
             System.out.println("You got extra health!");
-        }
-
-        if (score > highScore) {
-            highScore = score;
-            System.out.println("highscore: " + highScore);
         }
         
         System.out.println("Health: " + health);
@@ -166,6 +164,11 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
 
     public void setCurrentRoom(GameLevel gameLevel) {
         currentroom = gameLevel;
+    }
+
+    public void resetGame() {
+        score = 0;
+        health = 25;
     }
 
 }

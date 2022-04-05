@@ -45,6 +45,7 @@ public class GameLevel extends DynamicScene implements TileMapContainer {
     
     private ArrayList<TextEntity> texts = new ArrayList<>();
 
+    
     public GameLevel(Peach peach){
         this.peach = peach;
     }
@@ -68,8 +69,8 @@ public class GameLevel extends DynamicScene implements TileMapContainer {
 
         texts.add(createText(scoreTxt, SCORE, FontWeight.BOLD, buttonSize, Color.WHITE));
         texts.add(createText(scorePos, scoreString, FontWeight.BOLD, buttonSize, Color.WHITE));
-        texts.add(createText(livesTxt, LIVES, FontWeight.BOLD, buttonSize, Color.WHITE));
-        texts.add(createText(livesPos, livesString, FontWeight.BOLD, buttonSize, Color.WHITE));
+        texts.add(createText(livesTxt, LIVES, FontWeight.BOLD, buttonSize, Color.RED));
+        texts.add(createText(livesPos, livesString, FontWeight.BOLD, buttonSize, Color.RED));
         
         for (TextEntity entity : texts) {
             addEntity(entity);

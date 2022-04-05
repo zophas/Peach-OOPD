@@ -12,12 +12,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import nl.oopd.peach.Peach;
+import nl.oopd.peach.entities.Score;
 import nl.oopd.peach.entities.buttons.GiveUpButton;
 import nl.oopd.peach.entities.buttons.PauseButton;
 import nl.oopd.peach.entities.buttons.QuitButton;
 import nl.oopd.peach.entities.buttons.ResumeButton;
 
-public class PauseScreen extends StaticScene {
+public class PauseScreen extends StaticScene implements Score {
     private Peach peach;
     private int buttonSize = 50;
     private int fontSize = 50;
@@ -28,7 +29,7 @@ public class PauseScreen extends StaticScene {
 
     private final String TITLE_TEXT = "Pause";
     private final String SCORE = "Score: ";
-    private int score = GameLevel.getScore();
+    public int score = Score.score;
     String scoreString = String.valueOf(score);
     
     private ArrayList<TextEntity> texts = new ArrayList<>();

@@ -1,8 +1,5 @@
 package nl.oopd.peach.entities;
 
-import java.util.Random;
-
-import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Collider;
@@ -13,13 +10,14 @@ import com.github.hanyaeger.api.scenes.SceneBorder;
 
 public class NormalEnemy extends DynamicSpriteEntity implements IBehaviour,SceneBorderCrossingWatcher, Health {
   
-    int newHealth;
+   public int health = Health.health;
+   public int newHealth;
     private Size enemySize;
     private int newXPos = 1280;
     private int newYPos = 620;
 
-    private final double ENEMYSPEED = 3;
-    private final double ENEMYDIRECTION = 270d;
+     private final double ENEMYSPEED = 3;
+     private final double ENEMYDIRECTION = 270d;
     private final long ENEMYINTERVAL = 180;
 
  
@@ -52,8 +50,8 @@ public class NormalEnemy extends DynamicSpriteEntity implements IBehaviour,Scene
         System.out.println("You Collided with enemy!");
         playerSound.play();
 
-        newHealth -= 5;
-        //remove();
+        newHealth = health - 5;
+      
     }
 
     @Override
@@ -62,11 +60,13 @@ public class NormalEnemy extends DynamicSpriteEntity implements IBehaviour,Scene
         
     }
 
-    @Override
-    public void changeHealth(int health) {
-        newHealth = health;
-        
-    }
+	@Override
+	public void changeHealth(int health) {
+		health = newHealth;
+		
+	}
+
+   
 }
 
 

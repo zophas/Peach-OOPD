@@ -1,32 +1,24 @@
 package nl.oopd.peach.entities;
 
-import com.github.hanyaeger.api.AnchorPoint;
+import java.util.Set;
+
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.Newtonian;
 import com.github.hanyaeger.api.entities.SceneBorderTouchingWatcher;
-import com.github.hanyaeger.api.entities.YaegerEntity;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
-import com.github.hanyaeger.api.entities.impl.TextEntity;
-import com.github.hanyaeger.api.media.SoundClip;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 import com.github.hanyaeger.api.userinput.KeyListener;
+
 import javafx.scene.input.KeyCode;
 import nl.oopd.peach.Peach;
-import nl.oopd.peach.entities.Gameobjects.Tiles.Fireball;
-import nl.oopd.peach.scenes.GameLevel;
-
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Set;
 
 
 
-public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListener, SceneBorderTouchingWatcher, Newtonian, Health {
-    
+public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListener, SceneBorderTouchingWatcher, Newtonian, Health {    
     private Peach peach;
-    int newHealth;
+    public int health = Health.health;
     //sets the speed for the player
     private final double PLAYER_SPEED = 4;
  
@@ -43,24 +35,24 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
 
     @Override
     public void onPressedKeysChange(Set<KeyCode> pressedKeys) {
-        if (pressedKeys.contains(KeyCode.LEFT)) {
+        if (pressedKeys.contains(KeyCode.LEFT) || pressedKeys.contains(KeyCode.A)) {
             setMotion(PLAYER_SPEED, 270d);
             setCurrentFrameIndex(1);
 
-        } else if (pressedKeys.contains(KeyCode.RIGHT)) {
+        } else if (pressedKeys.contains(KeyCode.RIGHT) || pressedKeys.contains(KeyCode.D)) {
             setMotion(PLAYER_SPEED, 90d);
             setCurrentFrameIndex(2);
 
-        } else if (pressedKeys.contains(KeyCode.SPACE)) {
+        } else if (pressedKeys.contains(KeyCode.UP) || pressedKeys.contains(KeyCode.SPACE) || pressedKeys.contains(KeyCode.W)) {
 
             setMotion(PLAYER_SPEED, 180d);
             setCurrentFrameIndex(3);
 
-        } else if (pressedKeys.contains(KeyCode.DOWN)) {
+        } else if (pressedKeys.contains(KeyCode.DOWN) || pressedKeys.contains(KeyCode.S)) {
             setMotion(PLAYER_SPEED, 360d);
             setCurrentFrameIndex(4);
 
-        //}else if(pressedKeys.contains(KeyCode.Z)) {
+   
 
 
         } else if (pressedKeys.isEmpty()) {
@@ -89,15 +81,12 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
         }
     }
 
-    
-
     @Override
     public void isDying() {
-       if (newHealth <= 0) {
-           peach.setActiveScene(4);
-       }
+        if (health <= 0) {
+            peach.setActiveScene(4);
+        }
     }
-
 
     @Override
     public void onCollision(Collider collider) {
@@ -113,7 +102,7 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
         // playerSound.play();
 
         // health-= 5;
-        System.out.println("Health: " + newHealth);
+        System.out.println("Health: " + health);
         isDying();
     }
 
@@ -129,9 +118,11 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
 
     @Override
     public void changeHealth(int health) {
-        newHealth = health;
+        // TODO Auto-generated method stub
         
     }
+
+  
 
 
 }

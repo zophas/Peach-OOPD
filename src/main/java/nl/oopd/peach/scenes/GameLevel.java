@@ -26,9 +26,9 @@ public class GameLevel extends DynamicScene implements TileMapContainer, Health 
     private Peach peach;
     static boolean gameWon = false;
     public Player princessPeach;
-    int newHealth = 25;
+    //public int health = Health.health;
     
-
+    public int health = Health.health;
     public ArrayList<HealthBonus> healthFood = new ArrayList<>();
 
     private final int PAUSESCREEN = 3;
@@ -41,7 +41,7 @@ public class GameLevel extends DynamicScene implements TileMapContainer, Health 
     private final String GAMELEVEL_BACKGROUND = "images/GameLevel_Background.png";
     private final String GAMESCENE_MUSIC = "audio/GameScene_music.mp3";
     private final String HEALTH_FOOD = "images/health.png";
-    public int health;
+    
     static int highScore;
     private final String SCORE  = "Score: ";
     static int score = 0;
@@ -81,10 +81,10 @@ public class GameLevel extends DynamicScene implements TileMapContainer, Health 
         var special = new SpecialEnemy("images/special_Enemy04.png", new Coordinate2D(getWidth() / 2 - 300, getHeight() - SPECIALENEMYPOS), new Size(200, 100), 1, 4);
         addEntity(special);
 
-        var healthFood = new HealthBonus(HEALTH_FOOD, new Coordinate2D(getWidth() / 2, getHeight() / 2 - 100), new Size(100, 200));
+        var healthFood = new HealthBonus(HEALTH_FOOD, new Coordinate2D(getWidth() / 2 - 300, getHeight() / 2 - 100), new Size(100, 200));
        addEntity(healthFood);
         
-        String livesString = String.valueOf(newHealth);
+        String livesString = String.valueOf(health);
 
         texts.add(createText(scoreTxt, SCORE, FontWeight.BOLD, buttonSize, Color.WHITE));
         texts.add(createText(scorePos, scoreString, FontWeight.BOLD, buttonSize, Color.WHITE));
@@ -94,15 +94,10 @@ public class GameLevel extends DynamicScene implements TileMapContainer, Health 
         for (TextEntity entity : texts) {
             addEntity(entity);
         }
-
-        
-    
-            
-        
     }
 
 
-     @Override
+    @Override
     public void setupTileMaps() {
         TileMap GroundTileMap = new GroundTileMap();
         
@@ -139,21 +134,14 @@ public static int getHighScore() {
     return highScore;
 }
 
-@Override
-public double getWidth() {
-    // TODO Auto-generated method stub
-    return 0;
-}
-
-@Override
-public double getHeight() {
-    // TODO Auto-generated method stub
-    return 0;
-}
 
 @Override
 public void changeHealth(int health) {
-    newHealth = health;
+    // TODO Auto-generated method stub
+    
 }
+
+
+
 }
 

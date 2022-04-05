@@ -1,5 +1,6 @@
 package nl.oopd.peach;
 
+import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.YaegerGame;
 
@@ -12,6 +13,8 @@ import nl.oopd.peach.scenes.StartScene;
 
 
 public class Peach extends YaegerGame {
+
+    public Player princessPeach = new Player("images/Peach.png" ,new Coordinate2D(1280 / 2, 720 / 2 - 30), this);
     
     //constants for screen size and Game Title
     private final String GAMETITLE = "Peach - A Mario Sequel";
@@ -44,6 +47,10 @@ public class Peach extends YaegerGame {
     @Override
     public void setActiveScene(int id){
         super.setActiveScene(id);
+    }
+
+    public void resetGame() {
+         Player princessPeach = new Player("images/Peach.png" ,new Coordinate2D(1280 / 2, 720 / 2 - 30), this);
     }
 
     

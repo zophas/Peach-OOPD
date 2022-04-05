@@ -26,8 +26,6 @@ public class EndScene extends StaticScene implements Score, GameWon {
     public int highScore = Score.highScore;
     String highScoreString = String.valueOf(highScore);
 
-    public int gameWon = GameWon.gameWon;
-
     private final int STARTSCENE = 0;
     private final int SPACING = 200;
     
@@ -56,10 +54,10 @@ public class EndScene extends StaticScene implements Score, GameWon {
 
     @Override
     public void setupEntities() {
-        if (gameWon == 1) {
+        if (peach.princessPeach.gameWon == 1) {
             endText = "You won!";
          } else {
-             endText = "You lost, loser";
+             endText = "Game over";
              System.out.println(gameWon);
          }
     

@@ -26,9 +26,9 @@ import nl.oopd.peach.entities.buttons.PauseButton;
 
 public class GameLevel extends DynamicScene implements TileMapContainer, Health {
     private Peach peach;
-    static boolean gameWon = false;
+  
     public Player princessPeach;
-  TextEntity healthText;
+    TextEntity healthText;
     
     public int health = Health.health;
     public int score = Score.score;
@@ -72,9 +72,8 @@ public class GameLevel extends DynamicScene implements TileMapContainer, Health 
         PauseButton pauseButton = new PauseButton(pauseBttn, peach, peach.PAUSESCREEN, buttonSize);
         addEntity(pauseButton);
 
-        princessPeach = new Player("images/Peach.png" ,new Coordinate2D(getWidth() / 2, getHeight() / 2 - 30), peach);
-        princessPeach.setCurrentRoom(this);
-        addEntity(princessPeach);
+        peach.princessPeach.setCurrentRoom(this);
+        addEntity(peach.princessPeach);
 
         var goomba = new NormalEnemy("images/normal_Enemy_Two.png", new Coordinate2D(getWidth() / 2, getHeight() - NORMALENEMYPOS), new Size(125, 50), 1, 2);
         addEntity(goomba);
@@ -90,7 +89,7 @@ public class GameLevel extends DynamicScene implements TileMapContainer, Health 
         texts.add(createText(scoreTxt, SCORE, FontWeight.BOLD, buttonSize, Color.WHITE));
         texts.add(createText(scorePos, scoreString, FontWeight.BOLD, buttonSize, Color.WHITE));
         texts.add(createText(livesTxt, LIVES, FontWeight.BOLD, buttonSize, Color.RED));
-        healthText = new TextEntity(livesPos, "" + princessPeach.health);
+        healthText = new TextEntity(livesPos, "" + peach.princessPeach.health);
         healthText.setFill(Color.RED);
         healthText.setAnchorPoint(AnchorPoint.TOP_LEFT);
         healthText.setFont(Font.font("Roboto", FontWeight.BOLD, buttonSize));
@@ -121,15 +120,6 @@ public TextEntity createText(Coordinate2D position, String text, FontWeight font
     }
 
 
-
-public static boolean getGameWon() {
-    return gameWon;
-    
-}
-
-
-
-
 @Override
 public void changeHealth(int health) {
     // TODO Auto-generated method stub
@@ -137,7 +127,7 @@ public void changeHealth(int health) {
 }
 
     public void updateHealth() {
-        healthText.setText(" " + princessPeach.health);
+        healthText.setText(" " + peach.princessPeach.health);
     }
 
 }

@@ -19,10 +19,12 @@ public class RestartButton extends Button {
         setFill(Color.WHITE);
         setFont(Font.font("Roboto", FontWeight.SEMI_BOLD, buttonSize));
         setAnchorPoint(AnchorPoint.CENTER_CENTER);
+        
     }
         
     @Override
     public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2d) {
+        peach.resetGame();
         peach.setActiveScene(0);
         
     }

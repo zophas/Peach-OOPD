@@ -18,18 +18,18 @@ import nl.oopd.peach.scenes.GameLevel;
 import nl.oopd.peach.scenes.GameWon;
 
 
-public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListener, SceneBorderTouchingWatcher, Newtonian, Health, GameWon {
+public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListener, SceneBorderTouchingWatcher, Newtonian, Health {
     
     public int[] constraint = {
 
     };
 
-    public int gameWon = GameWon.gameWon;
+    public int gameWon;
 
     GameLevel currentroom;
     private Peach peach;
-    public int health = Health.health;
-    public int score = Score.score;
+    public int health;
+    public int score;
     public int highScore = Score.highScore;
     //sets the speed for the player
     private final double PLAYER_SPEED = 4;
@@ -41,7 +41,9 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
     public Player(String resource,Coordinate2D location, Peach peach) {
         super(resource, location, new Size(width, height), 1, 4);
         this.peach = peach;
-      
+        
+        health = 25;
+        score = 0;
 
     }
 
@@ -94,8 +96,9 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
     }
 
     public void gameWon() {
-        if (score >= 2) {
+        if (score >= 50) {
             gameWon = 1;
+            peach.setActiveScene(4);
             System.out.println("check" + gameWon);
         }
     }
@@ -139,6 +142,7 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
 
         if (score > highScore) {
             highScore = score;
+            System.out.println("highscore: " + highScore);
         }
         
         System.out.println("Health: " + health);

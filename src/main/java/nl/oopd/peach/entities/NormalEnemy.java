@@ -12,6 +12,7 @@ public class NormalEnemy extends DynamicSpriteEntity implements IBehaviour,Scene
     private int score, health, attack;
     private Size enemySize;
 
+ 
     public NormalEnemy(String resource, Coordinate2D location, int score, Size enemySize, int rows, int columns) {
         super(resource, location, enemySize, rows, columns);
 

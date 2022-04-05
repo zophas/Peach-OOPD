@@ -1,16 +1,20 @@
 package nl.oopd.peach.entities;
 
+import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.Newtonian;
 import com.github.hanyaeger.api.entities.SceneBorderTouchingWatcher;
+import com.github.hanyaeger.api.entities.YaegerEntity;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.media.SoundClip;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 import com.github.hanyaeger.api.userinput.KeyListener;
 import javafx.scene.input.KeyCode;
+import nl.oopd.peach.Peach;
 import nl.oopd.peach.entities.Gameobjects.Tiles.Fireball;
+import nl.oopd.peach.scenes.GameLevel;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -19,14 +23,17 @@ import java.util.Set;
 
 
 public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListener, SceneBorderTouchingWatcher, Newtonian {
-
+    private Peach peach;
+    private int lives = GameLevel.getLives();
     //sets the speed for the player
     private final double PLAYER_SPEED = 4;
-    private int health = 10;
+ 
     private int attack = 1;
-
+    static int height = 200;
+    static int width = 80;
+   
     public Player(String resource,Coordinate2D location) {
-        super(resource, location, new Size(80, 200), 1, 4);
+        super(resource, location, new Size(width, height), 1, 4);
       
 
     }
@@ -61,7 +68,7 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
     @Override
     public void notifyBoundaryTouching(SceneBorder border) {
         setSpeed(0);
-
+       
         switch (border) {
             case TOP:
                 setAnchorLocationY(1);
@@ -81,13 +88,14 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
 
     @Override
     public void doDamage() {
-        health -= attack;
+        lives--;
     }
 
     @Override
     public void isDying() {
-       /* if(health == 0);
-        peach.quit(); */
+       if (lives == 0) {
+           peach.setActiveScene(4);
+       }
     }
 
 
@@ -103,7 +111,8 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
         System.out.println("You Collided!");
         playerSound.play();
 
-        health--;
+        lives--;
     }
+
 
 }

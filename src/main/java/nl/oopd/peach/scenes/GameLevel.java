@@ -14,6 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import nl.oopd.peach.Peach;
+import nl.oopd.peach.entities.HealthBonus;
 import nl.oopd.peach.entities.NormalEnemy;
 import nl.oopd.peach.entities.Player;
 import nl.oopd.peach.entities.SpecialEnemy;
@@ -23,6 +24,10 @@ import nl.oopd.peach.entities.buttons.PauseButton;
 public class GameLevel extends DynamicScene implements TileMapContainer {
     private Peach peach;
     static boolean gameWon = false;
+    public Player princessPeach;
+    
+
+    public ArrayList<HealthBonus> healthFood = new ArrayList<>();
 
     private final int PAUSESCREEN = 3;
     
@@ -33,17 +38,16 @@ public class GameLevel extends DynamicScene implements TileMapContainer {
 
     private final String GAMELEVEL_BACKGROUND = "images/GameLevel_Background.png";
     private final String GAMESCENE_MUSIC = "audio/GameScene_music.mp3";
-    
+    private final String HEALTH_FOOD = "images/health.png";
+    public int health;
     static int highScore;
     private final String SCORE  = "Score: ";
     static int score = 0;
     private String scoreString = String.valueOf(score);
-    private final String LIVES = "Lives: ";
-    static int lives = 3;
-    private String livesString = String.valueOf(lives);
+    private final String LIVES = "Health: ";
     
     private ArrayList<TextEntity> texts = new ArrayList<>();
-
+   
     
     public GameLevel(Peach peach){
         this.peach = peach;
@@ -66,6 +70,20 @@ public class GameLevel extends DynamicScene implements TileMapContainer {
         PauseButton pauseButton = new PauseButton(pauseBttn, peach, PAUSESCREEN, buttonSize);
         addEntity(pauseButton);
 
+        princessPeach = new Player("images/Peach.png" ,new Coordinate2D(getWidth() / 2, getHeight() / 2 - 30), peach);
+        addEntity(princessPeach);
+
+        var goomba = new NormalEnemy("images/normal_Enemy_Two.png", new Coordinate2D(getWidth() / 2, getHeight() - NORMALENEMYPOS),1, new Size(125, 50), 1, 2);
+        addEntity(goomba);
+
+        var special = new SpecialEnemy("images/special_Enemy04.png", new Coordinate2D(getWidth() / 2 - 100, getHeight() - SPECIALENEMYPOS), 3, new Size(200, 100), 1, 4);
+        addEntity(special);
+
+        var healthFood = new HealthBonus(HEALTH_FOOD, new Coordinate2D(getWidth() / 2, getHeight() / 2 - 100), new Size(100, 200));
+       addEntity(healthFood);
+        health = Player.health;
+        String livesString = String.valueOf(health);
+
         texts.add(createText(scoreTxt, SCORE, FontWeight.BOLD, buttonSize, Color.WHITE));
         texts.add(createText(scorePos, scoreString, FontWeight.BOLD, buttonSize, Color.WHITE));
         texts.add(createText(livesTxt, LIVES, FontWeight.BOLD, buttonSize, Color.RED));
@@ -75,15 +93,10 @@ public class GameLevel extends DynamicScene implements TileMapContainer {
             addEntity(entity);
         }
 
-        var princessPeach = new Player("images/Peach.png" ,new Coordinate2D(getWidth() / 2, getHeight() / 2 - 30));
-        addEntity(princessPeach);
-
-        var goomba = new NormalEnemy("images/normal_Enemy_Two.png", new Coordinate2D(getWidth() / 2, getHeight() - NORMALENEMYPOS),1, new Size(125, 50), 1, 2);
-        addEntity(goomba);
-
-        var special = new SpecialEnemy("images/special_Enemy04.png", new Coordinate2D(getWidth() / 2 - 100, getHeight() - SPECIALENEMYPOS), 3, new Size(200, 100), 1, 4);
-        addEntity(special);
-
+        
+    
+            
+        
     }
 
 
@@ -95,13 +108,17 @@ public class GameLevel extends DynamicScene implements TileMapContainer {
     }
 
 
-TextEntity createText(Coordinate2D position, String text, FontWeight font, int fontSize, Color textColor) {
+public TextEntity createText(Coordinate2D position, String text, FontWeight font, int fontSize, Color textColor) {
     TextEntity newtext = new TextEntity(position, text);
     newtext.setFill(textColor);
     newtext.setAnchorPoint(AnchorPoint.TOP_LEFT);
     newtext.setFont(Font.font("Roboto", font, fontSize));
 
     return newtext;
+    }
+
+    private void createHealthFood() {
+
     }
 
 public static boolean getGameWon() {
@@ -113,9 +130,7 @@ public static int getScore() {
     return score;
 }
 
-public static int getLives() {
-    return lives;
-}
+
 
 public static int getHighScore() {
     if (score > highScore) {

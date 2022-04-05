@@ -1,5 +1,6 @@
 package nl.oopd.peach.entities;
 
+import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Collider;
@@ -42,6 +43,7 @@ public class NormalEnemy extends DynamicSpriteEntity implements IBehaviour,Scene
 
     @Override
     public void onCollision(Collider collider) {
+        
     }
 }
 

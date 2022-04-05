@@ -14,15 +14,19 @@ import com.github.hanyaeger.api.userinput.KeyListener;
 
 import javafx.scene.input.KeyCode;
 import nl.oopd.peach.Peach;
+import nl.oopd.peach.scenes.GameLevel;
+import nl.oopd.peach.scenes.GameWon;
 
 
-
-public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListener, SceneBorderTouchingWatcher, Newtonian, Health {  
+public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListener, SceneBorderTouchingWatcher, Newtonian, Health, GameWon {
     
     public int[] constraint = {
 
     };
 
+    public int gameWon = GameWon.gameWon;
+
+    GameLevel currentroom;
     private Peach peach;
     public int health = Health.health;
     public int score = Score.score;
@@ -30,7 +34,7 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
     //sets the speed for the player
     private final double PLAYER_SPEED = 4;
  
-    private int attack = 1;
+    //private int attack = 1;
     static int height = 200;
     static int width = 80;
    
@@ -89,9 +93,21 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
         }
     }
 
+    public void gameWon() {
+        if (score >= 2) {
+            gameWon = 1;
+            System.out.println("check" + gameWon);
+        }
+    }
+   
+
     @Override
     public void isDying() {
         if (health <= 0) {
+            peach.setActiveScene(4);
+        } 
+
+        if (score < 0) {
             peach.setActiveScene(4);
         }
     }
@@ -100,22 +116,25 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
     public void onCollision(Collider collider) {
         if(collider instanceof NormalEnemy){
             health -= 5;
-            score +=2;
+            score += 1;
+            currentroom.updateHealth();
             System.out.println("You Collided with enemy!");
             var playerSound = new SoundClip("audio/player_hurt.mp3");
             playerSound.play();
         } else if(collider instanceof SpecialEnemy){
             health -= 10;
-            score += 5;
+            score += 3;
+            currentroom.updateHealth();
             System.out.println("You Collided with special enemy!");
             var playerSound = new SoundClip("audio/player_hurt.mp3");
             playerSound.play();
         } else if (collider instanceof HealthBonus) {
             health += 10;
             score += 1;
+            currentroom.updateHealth();
             var playerSound = new SoundClip("audio/player_hurt.mp3");
             playerSound.play();
-            System.out.println("You got extra points!");
+            System.out.println("You got extra health!");
         }
 
         if (score > highScore) {
@@ -125,6 +144,7 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
         System.out.println("Health: " + health);
         System.out.println("Score: " + score);
         isDying();
+        gameWon();
     }
 
     @Override
@@ -139,7 +159,9 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
         
     }
 
-  
 
+    public void setCurrentRoom(GameLevel gameLevel) {
+        currentroom = gameLevel;
+    }
 
 }

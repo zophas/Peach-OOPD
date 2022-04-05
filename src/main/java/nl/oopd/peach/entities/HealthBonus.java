@@ -28,18 +28,17 @@ public class HealthBonus extends DynamicSpriteEntity implements IBehaviour, Scen
    
 
     @Override
-    public void onCollision(Collider collidingObject) {
-        
-        var playerSound = new SoundClip("audio/player_hurt.mp3");
-
+    public void onCollision(Collider collider) {
+        if (collider instanceof NormalEnemy) {
+            //do nothing
+        } else if (collider instanceof HealthBonus) {
+            //do nothing
+        } else {
         setAnchorLocation(new Coordinate2D(
                 new Random().nextInt((int)(getSceneWidth() - getWidth())),
                 new Random().nextInt((int)(getSceneHeight() - getHeight()))
         ));
-        System.out.println("You Collided!");
-        playerSound.play();
-
-        health += 10;
+        }
         
     }
 

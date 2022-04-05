@@ -13,15 +13,16 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import nl.oopd.peach.Peach;
+import nl.oopd.peach.entities.Score;
 import nl.oopd.peach.entities.buttons.QuitButton;
 import nl.oopd.peach.entities.buttons.RestartButton;
 
-public class EndScene extends StaticScene {
+public class EndScene extends StaticScene implements Score {
     private Peach peach;
 
-    private int score = GameLevel.getScore();
+    public int score = Score.score;
     String scoreString = String.valueOf(score);
-    private int highScore = GameLevel.getHighScore();
+    public int highScore = Score.highScore;
     String highScoreString = String.valueOf(highScore);
 
     private boolean gameWon = GameLevel.getGameWon();

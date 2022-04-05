@@ -18,6 +18,7 @@ import nl.oopd.peach.entities.Health;
 import nl.oopd.peach.entities.HealthBonus;
 import nl.oopd.peach.entities.NormalEnemy;
 import nl.oopd.peach.entities.Player;
+import nl.oopd.peach.entities.Score;
 import nl.oopd.peach.entities.SpecialEnemy;
 import nl.oopd.peach.entities.Gameobjects.Tiles.Tilemap.GroundTileMap;
 import nl.oopd.peach.entities.buttons.PauseButton;
@@ -26,12 +27,11 @@ public class GameLevel extends DynamicScene implements TileMapContainer, Health 
     private Peach peach;
     static boolean gameWon = false;
     public Player princessPeach;
-    //public int health = Health.health;
+  
     
     public int health = Health.health;
+    public int score = Score.score;
     public ArrayList<HealthBonus> healthFood = new ArrayList<>();
-
-    private final int PAUSESCREEN = 3;
     
     private int buttonSize = 30;
     private final int GAP = 100;
@@ -44,7 +44,6 @@ public class GameLevel extends DynamicScene implements TileMapContainer, Health 
     
     static int highScore;
     private final String SCORE  = "Score: ";
-    static int score = 0;
     private String scoreString = String.valueOf(score);
     private final String LIVES = "Health: ";
     
@@ -69,7 +68,7 @@ public class GameLevel extends DynamicScene implements TileMapContainer, Health 
         Coordinate2D livesTxt = new Coordinate2D(0 + GAP, buttonSize);
         Coordinate2D livesPos = new Coordinate2D(0 + GAP * 2, buttonSize);
 
-        PauseButton pauseButton = new PauseButton(pauseBttn, peach, PAUSESCREEN, buttonSize);
+        PauseButton pauseButton = new PauseButton(pauseBttn, peach, peach.PAUSESCREEN, buttonSize);
         addEntity(pauseButton);
 
         princessPeach = new Player("images/Peach.png" ,new Coordinate2D(getWidth() / 2, getHeight() / 2 - 30), peach);
@@ -82,7 +81,7 @@ public class GameLevel extends DynamicScene implements TileMapContainer, Health 
         addEntity(special);
 
         var healthFood = new HealthBonus(HEALTH_FOOD, new Coordinate2D(getWidth() / 2 - 300, getHeight() / 2 - 100), new Size(100, 200));
-       addEntity(healthFood);
+        addEntity(healthFood);
         
         String livesString = String.valueOf(health);
 
@@ -121,18 +120,7 @@ public static boolean getGameWon() {
     
 }
 
-public static int getScore() {
-    return score;
-}
 
-
-
-public static int getHighScore() {
-    if (score > highScore) {
-        highScore = score;
-    }
-    return highScore;
-}
 
 
 @Override

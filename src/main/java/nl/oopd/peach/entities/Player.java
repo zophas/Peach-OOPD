@@ -8,6 +8,7 @@ import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.Newtonian;
 import com.github.hanyaeger.api.entities.SceneBorderTouchingWatcher;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
+import com.github.hanyaeger.api.media.SoundClip;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 import com.github.hanyaeger.api.userinput.KeyListener;
 
@@ -16,9 +17,16 @@ import nl.oopd.peach.Peach;
 
 
 
-public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListener, SceneBorderTouchingWatcher, Newtonian, Health {    
+public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListener, SceneBorderTouchingWatcher, Newtonian, Health {  
+    
+    public int[] constraint = {
+
+    };
+
     private Peach peach;
     public int health = Health.health;
+    public int score = Score.score;
+    public int highScore = Score.highScore;
     //sets the speed for the player
     private final double PLAYER_SPEED = 4;
  
@@ -90,25 +98,34 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
 
     @Override
     public void onCollision(Collider collider) {
+        if(collider instanceof NormalEnemy){
+            health -= 5;
+            score +=2;
+            System.out.println("You Collided with enemy!");
+            var playerSound = new SoundClip("audio/player_hurt.mp3");
+            playerSound.play();
+        } else if(collider instanceof SpecialEnemy){
+            health -= 10;
+            score += 5;
+            System.out.println("You Collided with special enemy!");
+            var playerSound = new SoundClip("audio/player_hurt.mp3");
+            playerSound.play();
+        } else if (collider instanceof HealthBonus) {
+            health += 10;
+            score += 1;
+            var playerSound = new SoundClip("audio/player_hurt.mp3");
+            playerSound.play();
+            System.out.println("You got extra points!");
+        }
 
-        // var playerSound = new SoundClip("audio/player_hurt.mp3");
-
-        // setAnchorLocation(new Coordinate2D(
-        //         new Random().nextInt((int)(getSceneWidth() - getWidth())),
-        //         new Random().nextInt((int)(getSceneHeight() - getHeight()))
-        // ));
-        // System.out.println("You Collided!");
-        // System.out.println("Health: " + health);
-        // playerSound.play();
-
-        // health-= 5;
+        if (score > highScore) {
+            highScore = score;
+        }
+        
         System.out.println("Health: " + health);
+        System.out.println("Score: " + score);
         isDying();
     }
-
-    // public static int getHealth() {
-    //     return health;
-    // }
 
     @Override
     public void doDamage() {

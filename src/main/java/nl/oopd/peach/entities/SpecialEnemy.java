@@ -44,15 +44,13 @@ public class SpecialEnemy extends DynamicSpriteEntity implements IBehaviour,Scen
 
     @Override
     public void onCollision(Collider collider) {
+        if (collider instanceof NormalEnemy) {
+            //do nothing
+        } else if (collider instanceof HealthBonus) {
+            //do nothing
+        }
         Coordinate2D enemyPos = new Coordinate2D(newXPos, newYPos);
-        var playerSound = new SoundClip("audio/player_hurt.mp3");
-
-        setAnchorLocation(enemyPos);
-        System.out.println("You Collided with special enemy!");
-        playerSound.play();
-
-        health-= 10;
-       
+       setAnchorLocation(enemyPos);   
     }
 
     @Override

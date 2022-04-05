@@ -2,6 +2,8 @@ package nl.oopd.peach;
 
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.YaegerGame;
+
+import nl.oopd.peach.entities.Player;
 //import nl.oopd.peach.scenes.BossLevel;
 import nl.oopd.peach.scenes.EndScene;
 import nl.oopd.peach.scenes.GameLevel;
@@ -43,4 +45,6 @@ public class Peach extends YaegerGame {
     public void setActiveScene(int id){
         super.setActiveScene(id);
     }
+
+    
 }

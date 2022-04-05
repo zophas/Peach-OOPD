@@ -13,11 +13,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import nl.oopd.peach.Peach;
+import nl.oopd.peach.entities.Player;
 import nl.oopd.peach.entities.Score;
 import nl.oopd.peach.entities.buttons.QuitButton;
 import nl.oopd.peach.entities.buttons.RestartButton;
 
-public class EndScene extends StaticScene implements Score {
+public class EndScene extends StaticScene implements Score, GameWon {
     private Peach peach;
 
     public int score = Score.score;
@@ -25,7 +26,7 @@ public class EndScene extends StaticScene implements Score {
     public int highScore = Score.highScore;
     String highScoreString = String.valueOf(highScore);
 
-    private boolean gameWon = GameLevel.getGameWon();
+    public int gameWon = GameWon.gameWon;
 
     private final int STARTSCENE = 0;
     private final int SPACING = 200;
@@ -55,11 +56,12 @@ public class EndScene extends StaticScene implements Score {
 
     @Override
     public void setupEntities() {
-        if (gameWon) {
+        if (gameWon == 1) {
             endText = "You won!";
-        } else {
-            endText = "You lost, loser";
-        }
+         } else {
+             endText = "You lost, loser";
+             System.out.println(gameWon);
+         }
     
         Coordinate2D endTxt = new Coordinate2D(getWidth() / 2, getHeight() / 2 - SPACING);
         Coordinate2D highScoretxt = new Coordinate2D(getWidth() / 2 - 100, getHeight() / 2 - SPACING + titleFont);

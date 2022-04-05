@@ -15,7 +15,6 @@ import com.github.hanyaeger.api.userinput.KeyListener;
 import javafx.scene.input.KeyCode;
 import nl.oopd.peach.Peach;
 import nl.oopd.peach.scenes.GameLevel;
-import nl.oopd.peach.scenes.GameWon;
 
 
 public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListener, SceneBorderTouchingWatcher, Newtonian {

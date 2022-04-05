@@ -1,6 +1,5 @@
 package nl.oopd.peach.entities;
 
-import java.util.Optional;
 import java.util.Random;
 
 import com.github.hanyaeger.api.AnchorPoint;
@@ -9,13 +8,7 @@ import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.SceneBorderCrossingWatcher;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
-import com.github.hanyaeger.api.media.SoundClip;
 import com.github.hanyaeger.api.scenes.SceneBorder;
-
-
-import javafx.scene.Node;
-import nl.oopd.peach.Peach;
-import nl.oopd.peach.scenes.GameLevel;
 
 public class HealthBonus extends DynamicSpriteEntity implements IBehaviour, SceneBorderCrossingWatcher {
        

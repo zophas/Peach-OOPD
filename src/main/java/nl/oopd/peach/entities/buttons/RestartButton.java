@@ -24,7 +24,7 @@ public class RestartButton extends Button {
         
     @Override
     public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2d) {
-        peach.resetGame();
+        peach.princessPeach.resetGame();
         peach.setActiveScene(0);
         
     }

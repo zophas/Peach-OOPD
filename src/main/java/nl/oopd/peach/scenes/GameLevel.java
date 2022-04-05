@@ -29,6 +29,7 @@ public class GameLevel extends DynamicScene implements TileMapContainer, Health 
   
     public Player princessPeach;
     TextEntity healthText;
+    TextEntity scoreText;
     
     public int health = Health.health;
     public int score = Score.score;
@@ -83,19 +84,21 @@ public class GameLevel extends DynamicScene implements TileMapContainer, Health 
 
         var healthFood = new HealthBonus(HEALTH_FOOD, new Coordinate2D(getWidth() / 2 - 300, getHeight() / 2 - 100), new Size(100, 200));
         addEntity(healthFood);
-        
-        String livesString = String.valueOf(health);
 
         texts.add(createText(scoreTxt, SCORE, FontWeight.BOLD, buttonSize, Color.WHITE));
-        texts.add(createText(scorePos, scoreString, FontWeight.BOLD, buttonSize, Color.WHITE));
+        scoreText = new TextEntity(scorePos, "" + peach.princessPeach.score);
+        scoreText.setFill(Color.WHITE);
+        scoreText.setAnchorPoint(AnchorPoint.TOP_LEFT);
+        scoreText.setFont(Font.font("Roboto", FontWeight.BOLD, buttonSize));
+        addEntity(scoreText);
+
         texts.add(createText(livesTxt, LIVES, FontWeight.BOLD, buttonSize, Color.RED));
         healthText = new TextEntity(livesPos, "" + peach.princessPeach.health);
         healthText.setFill(Color.RED);
         healthText.setAnchorPoint(AnchorPoint.TOP_LEFT);
         healthText.setFont(Font.font("Roboto", FontWeight.BOLD, buttonSize));
         addEntity(healthText);
-        //texts.add(createText(livesPos, "" + princessPeach.health, FontWeight.BOLD, buttonSize, Color.RED));
-        
+      
         for (TextEntity entity : texts) {
             addEntity(entity);
         }
@@ -128,6 +131,10 @@ public void changeHealth(int health) {
 
     public void updateHealth() {
         healthText.setText(" " + peach.princessPeach.health);
+    }
+
+    public void updateScore() {
+        scoreText.setText(" " + peach.princessPeach.score);
     }
 
 }

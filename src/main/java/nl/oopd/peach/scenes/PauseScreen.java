@@ -12,14 +12,18 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import nl.oopd.peach.Peach;
+import nl.oopd.peach.entities.Player;
 import nl.oopd.peach.entities.Score;
 import nl.oopd.peach.entities.buttons.GiveUpButton;
 import nl.oopd.peach.entities.buttons.PauseButton;
 import nl.oopd.peach.entities.buttons.QuitButton;
 import nl.oopd.peach.entities.buttons.ResumeButton;
 
-public class PauseScreen extends StaticScene implements Score {
+public class PauseScreen extends StaticScene {
     private Peach peach;
+    
+    TextEntity scoreText;
+
     private int buttonSize = 50;
     private int fontSize = 50;
     private int titleFont = 90;
@@ -29,8 +33,8 @@ public class PauseScreen extends StaticScene implements Score {
 
     private final String TITLE_TEXT = "Pause";
     private final String SCORE = "Score: ";
-    public int score = Score.score;
-    String scoreString = String.valueOf(score);
+    public int score;
+
     
     private ArrayList<TextEntity> texts = new ArrayList<>();
 
@@ -49,13 +53,18 @@ public class PauseScreen extends StaticScene implements Score {
     public void setupEntities() {
         Coordinate2D title = new Coordinate2D(getWidth() / 2, getHeight() / 2 - 200);
         Coordinate2D score = new Coordinate2D(getWidth() / 2 - 100, getHeight() / 2 - 100);
-        Coordinate2D scoreNmr = new Coordinate2D(getWidth() / 2 + 100, getHeight() / 2 - 100);
+        Coordinate2D scorePos = new Coordinate2D(getWidth() / 2 + 100, getHeight() / 2 - 100);
         Coordinate2D resumeBttn = new Coordinate2D(getWidth() / 2, getHeight() / 2);
         Coordinate2D giveUpBttn = new Coordinate2D(getWidth() / 2, getHeight() / 2 + 100);
         Coordinate2D quitBttn = new Coordinate2D(getWidth() / 2, getHeight() / 2 + 200);
 
         texts.add(createText(score, SCORE, FontWeight.BOLD, fontSize, Color.WHITE));
-        texts.add(createText(scoreNmr, scoreString, FontWeight.BOLD, fontSize, Color.WHITE));
+        scoreText = new TextEntity(scorePos, "" + peach.princessPeach.score);
+        scoreText.setFill(Color.WHITE);
+        scoreText.setAnchorPoint(AnchorPoint.CENTER_CENTER);
+        scoreText.setFont(Font.font("Roboto", FontWeight.BOLD, fontSize));
+        addEntity(scoreText);
+        
         texts.add(createText(title, TITLE_TEXT, FontWeight.BOLD, titleFont, Color.HOTPINK));
         for (TextEntity entity : texts) {
             addEntity(entity);

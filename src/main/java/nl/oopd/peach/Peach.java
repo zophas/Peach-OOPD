@@ -49,9 +49,5 @@ public class Peach extends YaegerGame {
         super.setActiveScene(id);
     }
 
-    public void resetGame() {
-         Player princessPeach = new Player("images/Peach.png" ,new Coordinate2D(1280 / 2, 720 / 2 - 30), this);
-    }
-
     
 }

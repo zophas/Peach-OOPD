@@ -1,37 +1,35 @@
 package nl.oopd.peach.scenes;
 import java.util.ArrayList;
 
-
-
 import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.impl.TextEntity;
 import com.github.hanyaeger.api.scenes.StaticScene;
 
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import nl.oopd.peach.Peach;
-import nl.oopd.peach.entities.Player;
-import nl.oopd.peach.entities.Score;
 import nl.oopd.peach.entities.buttons.QuitButton;
 import nl.oopd.peach.entities.buttons.RestartButton;
 
-public class EndScene extends StaticScene implements Score, GameWon {
+public class EndScene extends StaticScene {
     private Peach peach;
 
-    public int score = Score.score;
+    TextEntity scoreText;
+    TextEntity healthText;
+
+    public int score;
     String scoreString = String.valueOf(score);
-    public int highScore = Score.highScore;
+    public int highScore;
     String highScoreString = String.valueOf(highScore);
 
     private final int STARTSCENE = 0;
     private final int SPACING = 200;
     
     private String endText;
-    private final String HIGH_SCORE = "High score: ";
-    private final String YOUR_SCORE = "Your score: ";
+    private final String SCORE = "Your score: ";
+    private final String HEALTH = "Remaining health: ";
 
     private final String STARTSCENE_MUSIC = "audio/StartScene_music.mp3";
 
@@ -58,22 +56,30 @@ public class EndScene extends StaticScene implements Score, GameWon {
             endText = "You won!";
          } else {
              endText = "Game over";
-             System.out.println(gameWon);
+            
          }
     
         Coordinate2D endTxt = new Coordinate2D(getWidth() / 2, getHeight() / 2 - SPACING);
-        Coordinate2D highScoretxt = new Coordinate2D(getWidth() / 2 - 100, getHeight() / 2 - SPACING + titleFont);
-        Coordinate2D highScoreNmr = new Coordinate2D(getWidth() / 2 + 100, getHeight() / 2 - SPACING + titleFont);
-        Coordinate2D yourScoretxt = new Coordinate2D(getWidth() / 2 - 100, getHeight() / 2 - SPACING + titleFont + fontSize);
-        Coordinate2D yourScoreNmr = new Coordinate2D(getWidth() / 2 + 100, getHeight() / 2 - SPACING + titleFont + fontSize);
+        Coordinate2D scoretxt = new Coordinate2D(getWidth() / 2 - 100, getHeight() / 2 - SPACING + titleFont);
+        Coordinate2D scorePos = new Coordinate2D(getWidth() / 2 + 100, getHeight() / 2 - SPACING + titleFont);
+        Coordinate2D healthtxt = new Coordinate2D(getWidth() / 2 - 100, getHeight() / 2 - SPACING + titleFont + fontSize);
+        Coordinate2D healthPos = new Coordinate2D(getWidth() / 2 + 100, getHeight() / 2 - SPACING + titleFont + fontSize);
         Coordinate2D restartBttn = new Coordinate2D(getWidth() / 2, getHeight() / 2);
         Coordinate2D quitBttn = new Coordinate2D(getWidth() / 2, getHeight() / 2 + buttonSize);
 
         texts.add(createText(endTxt, endText, FontWeight.BOLD, titleFont, Color.HOTPINK));
-        texts.add(createText(highScoretxt, HIGH_SCORE, FontWeight.MEDIUM, fontSize, Color.WHITE));
-        texts.add(createText(highScoreNmr, highScoreString, FontWeight.MEDIUM, fontSize, Color.WHITE));
-        texts.add(createText(yourScoretxt, YOUR_SCORE, FontWeight.MEDIUM, fontSize, Color.WHITE));
-        texts.add(createText(yourScoreNmr, scoreString, FontWeight.MEDIUM, fontSize, Color.WHITE));
+        texts.add(createText(scoretxt, SCORE, FontWeight.MEDIUM, fontSize, Color.WHITE));
+        scoreText = new TextEntity(scorePos, "" + peach.princessPeach.score);
+        scoreText.setFill(Color.WHITE);
+        scoreText.setAnchorPoint(AnchorPoint.CENTER_CENTER);
+        scoreText.setFont(Font.font("Roboto", FontWeight.BOLD, fontSize));
+        addEntity(scoreText);
+        texts.add(createText(healthtxt, HEALTH, FontWeight.MEDIUM, fontSize, Color.RED));
+        healthText = new TextEntity(healthPos, "" + peach.princessPeach.health);
+        healthText.setFill(Color.RED);
+        healthText.setAnchorPoint(AnchorPoint.CENTER_CENTER);
+        healthText.setFont(Font.font("Roboto", FontWeight.BOLD, fontSize));
+        addEntity(healthText);
         for (TextEntity entity : texts) {
             addEntity(entity);  
         }

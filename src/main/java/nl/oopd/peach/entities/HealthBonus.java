@@ -16,7 +16,7 @@ import nl.oopd.peach.Peach;
 import nl.oopd.peach.scenes.GameLevel;
 
 public class HealthBonus extends DynamicSpriteEntity implements IBehaviour, SceneBorderCrossingWatcher {
-    public int health = Player.getHealth();
+    
 
     public HealthBonus(String resource, Coordinate2D initialLocation, Size healthFoodSize) {
         super(resource, initialLocation, healthFoodSize);
@@ -27,7 +27,7 @@ public class HealthBonus extends DynamicSpriteEntity implements IBehaviour, Scen
 
     @Override
     public void onCollision(Collider collidingObject) {
-        health += 10;
+        //health += 10;
         remove();
         
     }

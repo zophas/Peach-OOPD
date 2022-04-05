@@ -23,10 +23,10 @@ import java.util.Set;
 
 
 
-public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListener, SceneBorderTouchingWatcher, Newtonian {
+public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListener, SceneBorderTouchingWatcher, Newtonian, Health {
     
     private Peach peach;
-    public static int health = 20;
+    int newHealth;
     //sets the speed for the player
     private final double PLAYER_SPEED = 4;
  
@@ -89,14 +89,11 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
         }
     }
 
-    @Override
-    public void doDamage() {
-        health--;
-    }
+    
 
     @Override
     public void isDying() {
-       if (health == 0) {
+       if (newHealth <= 0) {
            peach.setActiveScene(4);
        }
     }
@@ -105,22 +102,35 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
     @Override
     public void onCollision(Collider collider) {
 
-        var playerSound = new SoundClip("audio/player_hurt.mp3");
+        // var playerSound = new SoundClip("audio/player_hurt.mp3");
 
-        setAnchorLocation(new Coordinate2D(
-                new Random().nextInt((int)(getSceneWidth() - getWidth())),
-                new Random().nextInt((int)(getSceneHeight() - getHeight()))
-        ));
-        System.out.println("You Collided!");
-        System.out.println("Health: " + health);
-        playerSound.play();
+        // setAnchorLocation(new Coordinate2D(
+        //         new Random().nextInt((int)(getSceneWidth() - getWidth())),
+        //         new Random().nextInt((int)(getSceneHeight() - getHeight()))
+        // ));
+        // System.out.println("You Collided!");
+        // System.out.println("Health: " + health);
+        // playerSound.play();
 
-        health-= 5;
+        // health-= 5;
+        System.out.println("Health: " + newHealth);
         isDying();
     }
 
-    public static int getHealth() {
-        return health;
+    // public static int getHealth() {
+    //     return health;
+    // }
+
+    @Override
+    public void doDamage() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void changeHealth(int health) {
+        newHealth = health;
+        
     }
 
 

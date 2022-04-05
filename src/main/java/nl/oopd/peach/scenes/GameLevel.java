@@ -14,6 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import nl.oopd.peach.Peach;
+import nl.oopd.peach.entities.Health;
 import nl.oopd.peach.entities.HealthBonus;
 import nl.oopd.peach.entities.NormalEnemy;
 import nl.oopd.peach.entities.Player;
@@ -21,10 +22,11 @@ import nl.oopd.peach.entities.SpecialEnemy;
 import nl.oopd.peach.entities.Gameobjects.Tiles.Tilemap.GroundTileMap;
 import nl.oopd.peach.entities.buttons.PauseButton;
 
-public class GameLevel extends DynamicScene implements TileMapContainer {
+public class GameLevel extends DynamicScene implements TileMapContainer, Health {
     private Peach peach;
     static boolean gameWon = false;
     public Player princessPeach;
+    int newHealth = 25;
     
 
     public ArrayList<HealthBonus> healthFood = new ArrayList<>();
@@ -73,16 +75,16 @@ public class GameLevel extends DynamicScene implements TileMapContainer {
         princessPeach = new Player("images/Peach.png" ,new Coordinate2D(getWidth() / 2, getHeight() / 2 - 30), peach);
         addEntity(princessPeach);
 
-        var goomba = new NormalEnemy("images/normal_Enemy_Two.png", new Coordinate2D(getWidth() / 2, getHeight() - NORMALENEMYPOS),1, new Size(125, 50), 1, 2);
+        var goomba = new NormalEnemy("images/normal_Enemy_Two.png", new Coordinate2D(getWidth() / 2, getHeight() - NORMALENEMYPOS), new Size(125, 50), 1, 2);
         addEntity(goomba);
 
-        var special = new SpecialEnemy("images/special_Enemy04.png", new Coordinate2D(getWidth() / 2 - 100, getHeight() - SPECIALENEMYPOS), 3, new Size(200, 100), 1, 4);
+        var special = new SpecialEnemy("images/special_Enemy04.png", new Coordinate2D(getWidth() / 2 - 300, getHeight() - SPECIALENEMYPOS), new Size(200, 100), 1, 4);
         addEntity(special);
 
         var healthFood = new HealthBonus(HEALTH_FOOD, new Coordinate2D(getWidth() / 2, getHeight() / 2 - 100), new Size(100, 200));
        addEntity(healthFood);
-        health = Player.health;
-        String livesString = String.valueOf(health);
+        
+        String livesString = String.valueOf(newHealth);
 
         texts.add(createText(scoreTxt, SCORE, FontWeight.BOLD, buttonSize, Color.WHITE));
         texts.add(createText(scorePos, scoreString, FontWeight.BOLD, buttonSize, Color.WHITE));
@@ -117,9 +119,7 @@ public TextEntity createText(Coordinate2D position, String text, FontWeight font
     return newtext;
     }
 
-    private void createHealthFood() {
 
-    }
 
 public static boolean getGameWon() {
     return gameWon;
@@ -137,6 +137,23 @@ public static int getHighScore() {
         highScore = score;
     }
     return highScore;
+}
+
+@Override
+public double getWidth() {
+    // TODO Auto-generated method stub
+    return 0;
+}
+
+@Override
+public double getHeight() {
+    // TODO Auto-generated method stub
+    return 0;
+}
+
+@Override
+public void changeHealth(int health) {
+    newHealth = health;
 }
 }
 

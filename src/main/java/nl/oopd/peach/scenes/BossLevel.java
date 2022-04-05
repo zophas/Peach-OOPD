@@ -30,7 +30,7 @@ public class BossLevel extends DynamicScene implements TileMapContainer {
 
     @Override
     public void setupEntities() {
-        var guven = new BossEnemy("images/boss_Enemy.png", new Coordinate2D(getWidth() / 2 , getHeight() - 200), 3, new Size(300, 150), 5, 4);
+        var guven = new BossEnemy("images/boss_Enemy.png", new Coordinate2D(getWidth() / 2 , getHeight() - 200), new Size(300, 150), 5, 4);
         addEntity(guven);
 
         var princessPeach = new Player("images/Peach.png" ,new Coordinate2D(getWidth() / 2, getHeight() / 2 - 30), peach);

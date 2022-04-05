@@ -7,8 +7,8 @@ public class BossEnemy extends NormalEnemy{
  private int score;
  private Size bossSize;
 
-   public BossEnemy(String resource,Coordinate2D location, int score, Size bossSize, int rows, int columns) {
-       super(resource,location,score, bossSize, rows,columns);
+   public BossEnemy(String resource,Coordinate2D location, Size bossSize, int rows, int columns) {
+       super(resource,location, bossSize, rows,columns);
        this.bossSize = bossSize;
 
        this.score = score;

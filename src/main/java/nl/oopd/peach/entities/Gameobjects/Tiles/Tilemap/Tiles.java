@@ -6,10 +6,10 @@ import com.github.hanyaeger.api.entities.impl.SpriteEntity;
 
 
 
-public class Ground extends SpriteEntity {
+public class Tiles extends SpriteEntity {
     private Size tile;
 
-    public Ground(Coordinate2D initialLocation, Size tile, String resource)
+    public Tiles(Coordinate2D initialLocation, Size tile, String resource)
     {
         super(resource, initialLocation,tile);
     }

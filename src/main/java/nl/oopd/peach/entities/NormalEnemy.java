@@ -9,7 +9,7 @@ import com.github.hanyaeger.api.scenes.SceneBorder;
 
 public class NormalEnemy extends DynamicSpriteEntity implements IBehaviour,SceneBorderCrossingWatcher {
 
-    private int score, health, attack;
+    private int score, health;
     private Size enemySize;
 
  
@@ -24,8 +24,8 @@ public class NormalEnemy extends DynamicSpriteEntity implements IBehaviour,Scene
     }
 
     @Override
-    public void doDamage() {
-        health -= attack;
+    public void doDamage(){
+
     }
 
     @Override

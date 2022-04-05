@@ -106,7 +106,17 @@ public class GameLevel extends DynamicScene implements TileMapContainer {
         addTileMap(GroundTileMap);
     }
 
-
+/**
+ * Is de functie om de tekst te maken, zodat alle tekst hetzelfde eruit ziet en 
+ * efficient kan worden toegevoegd met zo min mogelijk dubbele code.
+ * @author Timoy van Balkom
+ * @param position
+ * @param text
+ * @param font
+ * @param fontSize
+ * @param textColor
+ * @return
+ */
 public TextEntity createText(Coordinate2D position, String text, FontWeight font, int fontSize, Color textColor) {
     TextEntity newtext = new TextEntity(position, text);
     newtext.setFill(textColor);
@@ -116,11 +126,18 @@ public TextEntity createText(Coordinate2D position, String text, FontWeight font
     return newtext;
     }
 
-
+    /**
+     * Update de health realtime
+     * @author Timoy van Balkom
+     */
     public void updateHealth() {
         healthText.setText(" " + peach.princessPeach.health);
     }
 
+    /**
+     * Update de score realtime
+     * @author Timoy van Balkom
+     */
     public void updateScore() {
         scoreText.setText(" " + peach.princessPeach.score);
     }

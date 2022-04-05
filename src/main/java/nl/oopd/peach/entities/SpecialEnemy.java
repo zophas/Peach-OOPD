@@ -12,7 +12,7 @@ import com.github.hanyaeger.api.media.SoundClip;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 
 public class SpecialEnemy extends DynamicSpriteEntity implements IBehaviour,SceneBorderCrossingWatcher, Health {
-    int newHealth;
+    public int health = Health.health;
  
     private Size enemySize;
     private int newXPos = 1280;
@@ -48,11 +48,11 @@ public class SpecialEnemy extends DynamicSpriteEntity implements IBehaviour,Scen
         var playerSound = new SoundClip("audio/player_hurt.mp3");
 
         setAnchorLocation(enemyPos);
-        System.out.println("You Collided with enemy!");
+        System.out.println("You Collided with special enemy!");
         playerSound.play();
 
-        newHealth-= 10;
-        //remove();
+        health-= 10;
+       
     }
 
     @Override
@@ -63,8 +63,10 @@ public class SpecialEnemy extends DynamicSpriteEntity implements IBehaviour,Scen
 
     @Override
     public void changeHealth(int health) {
-        newHealth = health;
+        // TODO Auto-generated method stub
         
     }
+
+  
 }
 

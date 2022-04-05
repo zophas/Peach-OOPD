@@ -1,6 +1,7 @@
 package nl.oopd.peach.entities;
 
 import java.util.Optional;
+import java.util.Random;
 
 import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
@@ -8,6 +9,7 @@ import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.SceneBorderCrossingWatcher;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
+import com.github.hanyaeger.api.media.SoundClip;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 
 
@@ -15,9 +17,9 @@ import javafx.scene.Node;
 import nl.oopd.peach.Peach;
 import nl.oopd.peach.scenes.GameLevel;
 
-public class HealthBonus extends DynamicSpriteEntity implements IBehaviour, SceneBorderCrossingWatcher {
+public class HealthBonus extends DynamicSpriteEntity implements IBehaviour, SceneBorderCrossingWatcher, Health {
     
-
+    public int health = Health.health;
     public HealthBonus(String resource, Coordinate2D initialLocation, Size healthFoodSize) {
         super(resource, initialLocation, healthFoodSize);
         //TODO Auto-generated constructor stub
@@ -27,8 +29,17 @@ public class HealthBonus extends DynamicSpriteEntity implements IBehaviour, Scen
 
     @Override
     public void onCollision(Collider collidingObject) {
-        //health += 10;
-        remove();
+        
+        var playerSound = new SoundClip("audio/player_hurt.mp3");
+
+        setAnchorLocation(new Coordinate2D(
+                new Random().nextInt((int)(getSceneWidth() - getWidth())),
+                new Random().nextInt((int)(getSceneHeight() - getHeight()))
+        ));
+        System.out.println("You Collided!");
+        playerSound.play();
+
+        health += 10;
         
     }
 
@@ -85,6 +96,18 @@ public class HealthBonus extends DynamicSpriteEntity implements IBehaviour, Scen
         // TODO Auto-generated method stub
         
     }
+
+
+
+    @Override
+    public void changeHealth(int health) {
+        // TODO Auto-generated method stub
+        
+    }
+
+
+
+    
 
    
 }

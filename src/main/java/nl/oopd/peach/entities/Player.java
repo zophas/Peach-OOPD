@@ -179,11 +179,6 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
         gameWon();
     }
 
-    @Override
-    public void doDamage() {
-        // TODO Auto-generated method stub
-        
-    }
 
     /**
      * Zet de currentroom naar de gameLevel die als parameter wordt meegegeven.

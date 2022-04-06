@@ -27,22 +27,13 @@ public class NormalEnemy extends DynamicSpriteEntity implements IBehaviour,Scene
     }
 
     @Override
-    public void doDamage(){
-
-    }
-
-    @Override
     public void notifyBoundaryCrossing(SceneBorder sceneBorder) {
         setAnchorLocationX(getSceneWidth());
     }
 
     @Override
     public void onCollision(Collider collider) {
-        if (collider instanceof SpecialEnemy) {
-            //do nothing
-        } else if (collider instanceof HealthBonus) {
-            //do nothing
-        } else {
+        if(collider instanceof Player) {
         Coordinate2D enemyPos = new Coordinate2D(newXPos, newYPos);
         setAnchorLocation(enemyPos);
         }

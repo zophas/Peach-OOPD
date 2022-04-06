@@ -19,11 +19,7 @@ public class HealthBonus extends DynamicSpriteEntity implements IBehaviour, Scen
 
     @Override
     public void onCollision(Collider collider) {
-        if (collider instanceof NormalEnemy) {
-            //do nothing
-        } else if (collider instanceof HealthBonus) {
-            //do nothing
-        } else {
+        if(collider instanceof Player) {
         setAnchorLocation(new Coordinate2D(
                 new Random().nextInt((int)(getSceneWidth() - getWidth())),
                 new Random().nextInt((int)(getSceneHeight() - getHeight()))
@@ -70,12 +66,6 @@ public class HealthBonus extends DynamicSpriteEntity implements IBehaviour, Scen
 
     @Override
     public void notifyBoundaryCrossing(SceneBorder border) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void doDamage() {
         // TODO Auto-generated method stub
         
     }

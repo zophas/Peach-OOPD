@@ -19,7 +19,7 @@ import nl.oopd.peach.Peach;
 import nl.oopd.peach.scenes.GameLevel;
 
 
-public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListener, SceneBorderTouchingWatcher, Newtonian, UpdateExposer {
+public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListener, SceneBorderTouchingWatcher, Newtonian, UpdateExposer, Points {
     public final double UP = 180d;
     public final double DOWN = 360d;
     public final double LEFT = 270d;
@@ -31,8 +31,8 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
 
     GameLevel currentroom;
     private Peach peach;
-    public int health;
-    public int score;
+    public int health = Points.health;
+    public int score = Points.score;
    
     //sets the speed for the player
     private final double PLAYER_SPEED = 4;
@@ -44,9 +44,6 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
     public Player(String resource,Coordinate2D location, Peach peach) {
         super(resource, location, new Size(width, height), 1, 4);
         this.peach = peach;
-        
-        health = 25;
-        score = 0;
 
     }
 
@@ -209,6 +206,7 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
     public void resetGame() {
         score = 0;
         health = 25;
+        gameWon = 0;
     }
 
     @Override

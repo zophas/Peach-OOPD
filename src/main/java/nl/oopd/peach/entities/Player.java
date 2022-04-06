@@ -97,18 +97,24 @@ public class Player extends DynamicSpriteEntity implements KeyListener, SceneBor
     public void gameWon() {
         if (score >= 25) {
             gameWon = 1;
-            peach.setActiveScene(4);
+            peach.setActiveScene(peach.ENDSCENE);
             System.out.println("check" + gameWon);
         }
     }
 
+    /**
+     * Als de health of score minder dan 0 is dan zet deze functie de activescene op endScene
+     * @author Timoy van Balkom
+     */
     public void isDying() {
         if (health <= 0) {
-            peach.setActiveScene(4);
+            peach.setActiveScene(peach.ENDSCENE);
+            gameWon = 0;
         } 
 
         if (score < 0) {
-            peach.setActiveScene(4);
+            peach.setActiveScene(peach.ENDSCENE);
+            gameWon = 0;
         }
     }
 
@@ -168,7 +174,7 @@ public class Player extends DynamicSpriteEntity implements KeyListener, SceneBor
             score -= 2;
             currentroom.updateHealth();
             currentroom.updateScore();
-            var playerSound = new SoundClip("audio/player_hurt.mp3");
+            var playerSound = new SoundClip("audio/Healthbonus_sound.mp3");
             playerSound.play();
             System.out.println("You got extra health!");
         }

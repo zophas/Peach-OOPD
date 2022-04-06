@@ -16,7 +16,6 @@ import javafx.scene.text.FontWeight;
 import nl.oopd.peach.Peach;
 import nl.oopd.peach.entities.HealthBonus;
 import nl.oopd.peach.entities.NormalEnemy;
-import nl.oopd.peach.entities.Player;
 import nl.oopd.peach.entities.Points;
 import nl.oopd.peach.entities.SpecialEnemy;
 import nl.oopd.peach.entities.Gameobjects.Tiles.Tilemap.GroundTileMap;

@@ -13,12 +13,12 @@ import nl.oopd.peach.scenes.StartScene;
 
 
 public class Peach extends YaegerGame {
-
-    public Player princessPeach = new Player("images/Peach.png" ,new Coordinate2D(1280 / 2, 720 / 2 - 30), this);
+    private final int WIDHT = 1280, HEIGHT = 720, DEVIDER = 2, SPACING = 30;
+    public Player princessPeach = new Player("images/Peach.png" ,new Coordinate2D(WIDHT / DEVIDER, HEIGHT / DEVIDER - SPACING), this);
     
     //constants for screen size and Game Title
     private final String GAMETITLE = "Peach - A Mario Sequel";
-    private final Size SIZE = new Size(1280, 720);
+    private final Size SIZE = new Size(WIDHT, HEIGHT);
 
     //constants for scenes
     public final int STARTSCENE = 0, GAMESCENE = 1, PAUSESCREEN = 3, ENDSCENE = 4;

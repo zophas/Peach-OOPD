@@ -29,46 +29,7 @@ public class HealthBonus extends DynamicSpriteEntity implements SceneBorderCross
     }
 
     @Override
-    public void setAnchorLocationX(double x) {
-        // TODO Auto-generated method stub
-        
-    }
+    public void notifyBoundaryCrossing(SceneBorder sceneBorder) {
 
-    @Override
-    public void setAnchorLocationY(double y) {
-        // TODO Auto-generated method stub
-        
     }
-
-    @Override
-    public Coordinate2D getAnchorLocation() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public void transferCoordinatesToNode() {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void setAnchorPoint(AnchorPoint anchorPoint) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public AnchorPoint getAnchorPoint() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public void notifyBoundaryCrossing(SceneBorder border) {
-        // TODO Auto-generated method stub
-        
-    }
-
-   
 }

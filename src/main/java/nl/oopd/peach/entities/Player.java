@@ -153,31 +153,25 @@ public class Player extends DynamicSpriteEntity implements KeyListener, SceneBor
 
     @Override
     public void onCollision(Collider collider) {
+        var playerHurt = new SoundClip("audio/player_hurt.mp3");
+        var playerHealth = new SoundClip("audio/Healthbonus_sound.mp3");
+
         if(collider instanceof NormalEnemy){
             health -= 5;
             score += 1;
-            currentroom.updateHealth();
-            currentroom.updateScore();
-            System.out.println("You Collided with enemy!");
-            var playerSound = new SoundClip("audio/player_hurt.mp3");
-            playerSound.play();
+            playerHurt.play();
         } else if(collider instanceof SpecialEnemy){
             health -= 10;
             score += 3;
-            currentroom.updateHealth();
-            currentroom.updateScore();
-            System.out.println("You Collided with special enemy!");
-            var playerSound = new SoundClip("audio/player_hurt.mp3");
-            playerSound.play();
+            playerHurt.play();
         } else if (collider instanceof HealthBonus) {
             health += 10;
             score -= 2;
-            currentroom.updateHealth();
-            currentroom.updateScore();
-            var playerSound = new SoundClip("audio/Healthbonus_sound.mp3");
-            playerSound.play();
-            System.out.println("You got extra health!");
+            playerHealth.play();
         }
+
+        currentroom.updateHealth();
+        currentroom.updateScore();
         
         System.out.println("Health: " + health);
         System.out.println("Score: " + score);

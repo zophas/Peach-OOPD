@@ -16,6 +16,7 @@ public class SpecialEnemy extends DynamicSpriteEntity implements SceneBorderCros
     private final double ENEMYSPEED = 3;
     private final double ENEMYDIRECTION = 270d;
     private final long ENEMYINTERVAL = 180;
+
  
     public SpecialEnemy(String resource, Coordinate2D location, Size enemySize, int rows, int columns) {
         super(resource, location, enemySize, rows, columns);

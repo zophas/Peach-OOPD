@@ -23,7 +23,7 @@ public class GiveUpButton extends Button {
 
     @Override
     public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2d) {
-        peach.setActiveScene(0);
+        peach.setActiveScene(peach.STARTSCENE);
         
     }
     

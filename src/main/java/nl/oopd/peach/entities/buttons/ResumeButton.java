@@ -23,7 +23,7 @@ public class ResumeButton extends Button {
 
     @Override
     public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2d) {
-        peach.setActiveScene(1);
+        peach.setActiveScene(peach.GAMESCENE);
         
     }
     

@@ -21,7 +21,7 @@ public class Peach extends YaegerGame {
     private final Size SIZE = new Size(1280, 720);
 
     //constants for scenes
-    public final int STARTSCENE = 0, GAMESCENE = 1, BOSSSCENE = 2, PAUSESCREEN = 3, ENDSCENE = 4;
+    public final int STARTSCENE = 0, GAMESCENE = 1, PAUSESCREEN = 3, ENDSCENE = 4;
 
     
     public static void main(String[] args) {
@@ -39,7 +39,6 @@ public class Peach extends YaegerGame {
     {
         addScene(STARTSCENE, new StartScene(this));
         addScene(GAMESCENE, new GameLevel(this));
-        //addScene(BOSSSCENE, new BossLevel(this));
         addScene(PAUSESCREEN, new PauseScreen(this));
         addScene(ENDSCENE, new EndScene(this));
     }

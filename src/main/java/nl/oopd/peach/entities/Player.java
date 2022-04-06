@@ -65,6 +65,8 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
         } else if (pressedKeys.contains(KeyCode.S)) {
             setMotion(PLAYER_SPEED, DOWN);
             setCurrentFrameIndex(4);
+        } else if (pressedKeys.contains(KeyCode.ESCAPE)) {
+            peach.setActiveScene(peach.PAUSESCREEN);
         }
 
         else if (pressedKeys.isEmpty()) {

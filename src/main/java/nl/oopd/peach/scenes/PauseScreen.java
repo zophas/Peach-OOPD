@@ -23,8 +23,7 @@ public class PauseScreen extends StaticScene {
     private int buttonSize = 50;
     private int fontSize = 50;
     private int titleFont = 90;
-    private final int GAMESCENE = 1;
-    private final int STARTSCENE = 0;
+
     private final String STARTSCENE_MUSIC = "audio/StartScene_music.mp3";
 
     private final String TITLE_TEXT = "Pause";
@@ -66,10 +65,10 @@ public class PauseScreen extends StaticScene {
             addEntity(entity);
         }
 
-        ResumeButton resumeButton = new ResumeButton(resumeBttn, peach, GAMESCENE, buttonSize);
+        ResumeButton resumeButton = new ResumeButton(resumeBttn, peach, peach.GAMESCENE, buttonSize);
         addEntity(resumeButton);
 
-        GiveUpButton giveUpButton = new GiveUpButton(giveUpBttn, peach, STARTSCENE, buttonSize);
+        GiveUpButton giveUpButton = new GiveUpButton(giveUpBttn, peach, peach.STARTSCENE, buttonSize);
         addEntity(giveUpButton);
 
         QuitButton quitButton = new QuitButton(quitBttn, peach, buttonSize);

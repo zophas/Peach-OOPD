@@ -24,7 +24,7 @@ public class PauseButton extends Button{
 
     @Override
     public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2d) {
-        peach.setActiveScene(3);
+        peach.setActiveScene(peach.PAUSESCREEN);
         
     }
     

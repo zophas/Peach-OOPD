@@ -15,7 +15,7 @@ import nl.oopd.peach.entities.buttons.StartButton;
 
 public class StartScene extends StaticScene {
     private Peach peach;
-    private final int GAMESCENE = 1;
+
     private final String TITLE_TEXT = "PEACH";
     private final String TITLE_SUBTEXT = "A Mario sequel";
     private final String STARTSCENE_BACKGROUND = "images/StartScene_background.jpg";
@@ -52,7 +52,7 @@ public class StartScene extends StaticScene {
             addEntity(entity);
         }
 
-        StartButton startButton = new StartButton(startButtonPos, peach, GAMESCENE);
+        StartButton startButton = new StartButton(startButtonPos, peach, peach.GAMESCENE);
         addEntity(startButton);
     }
 

@@ -24,7 +24,6 @@ public class EndScene extends StaticScene {
     public int highScore;
     String highScoreString = String.valueOf(highScore);
 
-    private final int STARTSCENE = 0;
     private final int SPACING = 200;
     
     private String endText;
@@ -85,7 +84,7 @@ public class EndScene extends StaticScene {
             addEntity(entity);  
         }
 
-        RestartButton restartButton = new RestartButton(restartBttn, peach, STARTSCENE, buttonSize);
+        RestartButton restartButton = new RestartButton(restartBttn, peach, peach.STARTSCENE, buttonSize);
         addEntity(restartButton);
         QuitButton quitButton = new QuitButton(quitBttn, peach, buttonSize);
         addEntity(quitButton);

@@ -18,18 +18,16 @@ public class EndScene extends StaticScene {
 
     TextEntity scoreText, healthText;
    
-    public int score;  
-    public int health;
+    public int score, health;
 
-    private final int SPACING = 200;
+    private final int SPACING = 200, SMALLSPACING = 100, DEVIDER = 2;
     
     private String endText;
     private final String SCORE = "Your score: ", HEALTH = "Remaining health: ";
 
     private final String STARTSCENE_MUSIC = "audio/StartScene_music.mp3";
 
-    private final int titleFont = 80;
-    private final int fontSize = 35, buttonSize = 50;
+    private final int fontSize = 35, buttonSize = 50, titleFont = 80;
 
     private ArrayList<TextEntity> texts = new ArrayList<>();
 
@@ -51,13 +49,13 @@ public class EndScene extends StaticScene {
              endText = "Game over"; 
          }
     
-        Coordinate2D endTxt = new Coordinate2D(getWidth() / 2, getHeight() / 2 - SPACING);
-        Coordinate2D scoretxt = new Coordinate2D(getWidth() / 2 - 100, getHeight() / 2 - SPACING + titleFont);
-        Coordinate2D scorePos = new Coordinate2D(getWidth() / 2 + 100, getHeight() / 2 - SPACING + titleFont);
-        Coordinate2D healthtxt = new Coordinate2D(getWidth() / 2 - 100, getHeight() / 2 - SPACING + titleFont + fontSize);
-        Coordinate2D healthPos = new Coordinate2D(getWidth() / 2 + 100, getHeight() / 2 - SPACING + titleFont + fontSize);
-        Coordinate2D restartBttn = new Coordinate2D(getWidth() / 2, getHeight() / 2);
-        Coordinate2D quitBttn = new Coordinate2D(getWidth() / 2, getHeight() / 2 + buttonSize);
+        Coordinate2D endTxt = new Coordinate2D(getWidth() / DEVIDER, getHeight() / DEVIDER - SPACING);
+        Coordinate2D scoretxt = new Coordinate2D(getWidth() / DEVIDER - SMALLSPACING, getHeight() / DEVIDER - SPACING + titleFont);
+        Coordinate2D scorePos = new Coordinate2D(getWidth() / DEVIDER + SMALLSPACING, getHeight() / DEVIDER - SPACING + titleFont);
+        Coordinate2D healthtxt = new Coordinate2D(getWidth() / DEVIDER - SMALLSPACING, getHeight() / DEVIDER - SPACING + titleFont + fontSize);
+        Coordinate2D healthPos = new Coordinate2D(getWidth() / DEVIDER + SMALLSPACING, getHeight() / DEVIDER- SPACING + titleFont + fontSize);
+        Coordinate2D restartBttn = new Coordinate2D(getWidth() / DEVIDER, getHeight() / DEVIDER);
+        Coordinate2D quitBttn = new Coordinate2D(getWidth() / DEVIDER, getHeight() / DEVIDER + buttonSize);
 
         texts.add(createText(endTxt, endText, FontWeight.BOLD, titleFont, Color.HOTPINK));
         texts.add(createText(scoretxt, SCORE, FontWeight.MEDIUM, fontSize, Color.WHITE));
@@ -83,7 +81,6 @@ public class EndScene extends StaticScene {
         QuitButton quitButton = new QuitButton(quitBttn, peach, buttonSize);
         addEntity(quitButton);
         
-       
     }
     /**
      * Is de functie om de tekst te maken, zodat alle tekst hetzelfde eruit ziet en 

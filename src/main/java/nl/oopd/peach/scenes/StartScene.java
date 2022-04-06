@@ -22,7 +22,7 @@ public class StartScene extends StaticScene {
     private final String STARTSCENE_BACKGROUND = "images/StartScene_background.jpg";
     private final String STARTSCENE_MUSIC = "audio/StartScene_music.mp3";
 
-    private final int TITLE_SIZE = 80, SUBTEXT_SIZE = 45;
+    private final int TITLE_SIZE = 80, SUBTEXT_SIZE = 45, DEVIDER = 2, SPACING  = 200;
 
     private ArrayList<TextEntity> texts = new ArrayList<>();
 
@@ -38,9 +38,9 @@ public class StartScene extends StaticScene {
 
     @Override
     public void setupEntities() {
-        Coordinate2D title = new Coordinate2D(getWidth() / 2, getHeight() / 2 - 200);
-        Coordinate2D subtext = new Coordinate2D(getWidth() / 2, getHeight() / 2 - 200 + TITLE_SIZE);
-        Coordinate2D startButtonPos = new Coordinate2D(getWidth() / 2, getHeight() / 2);
+        Coordinate2D title = new Coordinate2D(getWidth() / DEVIDER, getHeight() / DEVIDER - SPACING);
+        Coordinate2D subtext = new Coordinate2D(getWidth() / DEVIDER, getHeight() / DEVIDER - SPACING + TITLE_SIZE);
+        Coordinate2D startButtonPos = new Coordinate2D(getWidth() / DEVIDER, getHeight() / DEVIDER);
 
         texts.add(createText(title, TITLE_TEXT, FontWeight.BOLD, TITLE_SIZE, Color.HOTPINK));
         texts.add(createText(subtext, TITLE_SUBTEXT, FontWeight.MEDIUM, SUBTEXT_SIZE, Color.WHITE));

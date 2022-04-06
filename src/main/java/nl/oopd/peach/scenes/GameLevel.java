@@ -17,18 +17,20 @@ import nl.oopd.peach.Peach;
 import nl.oopd.peach.entities.HealthBonus;
 import nl.oopd.peach.entities.NormalEnemy;
 import nl.oopd.peach.entities.Player;
+import nl.oopd.peach.entities.Points;
 import nl.oopd.peach.entities.SpecialEnemy;
 import nl.oopd.peach.entities.Gameobjects.Tiles.Tilemap.GroundTileMap;
 import nl.oopd.peach.entities.buttons.PauseButton;
 
-public class GameLevel extends DynamicScene implements TileMapContainer {
+public class GameLevel extends DynamicScene implements TileMapContainer, Points {
     private Peach peach;
   
     public Player princessPeach;
     TextEntity healthText;
     TextEntity scoreText;
     
-    public int score;
+    public int score = Points.score;
+    public int health = Points.health;
     public ArrayList<HealthBonus> healthFood = new ArrayList<>();
     
     private int buttonSize = 30;
@@ -76,18 +78,18 @@ public class GameLevel extends DynamicScene implements TileMapContainer {
         var special = new SpecialEnemy("images/special_Enemy04.png", new Coordinate2D(getWidth() / 2 - 300, getHeight() - SPECIALENEMYPOS), new Size(200, 100), 1, 4);
         addEntity(special);
 
-        var healthFood = new HealthBonus(HEALTH_FOOD, new Coordinate2D(getWidth() / 2 - 300, getHeight() / 2 - 100), new Size(100, 200));
+        var healthFood = new HealthBonus(HEALTH_FOOD, new Coordinate2D(getWidth() / 2 - 400, getHeight() / 2), new Size(100, 200));
         addEntity(healthFood);
 
         texts.add(createText(scoreTxt, SCORE, FontWeight.BOLD, buttonSize, Color.WHITE));
-        scoreText = new TextEntity(scorePos, "" + peach.princessPeach.score);
+        scoreText = new TextEntity(scorePos, "" + score);
         scoreText.setFill(Color.WHITE);
         scoreText.setAnchorPoint(AnchorPoint.TOP_LEFT);
         scoreText.setFont(Font.font("Roboto", FontWeight.BOLD, buttonSize));
         addEntity(scoreText);
 
         texts.add(createText(livesTxt, LIVES, FontWeight.BOLD, buttonSize, Color.RED));
-        healthText = new TextEntity(livesPos, "" + peach.princessPeach.health);
+        healthText = new TextEntity(livesPos, "" + health);
         healthText.setFill(Color.RED);
         healthText.setAnchorPoint(AnchorPoint.TOP_LEFT);
         healthText.setFont(Font.font("Roboto", FontWeight.BOLD, buttonSize));

@@ -32,8 +32,8 @@ public class Player extends DynamicSpriteEntity implements KeyListener, SceneBor
 
     GameScene currentroom;
     private Peach peach;
-    public int health;
-    public int score;
+    public int health, score;
+    private final int GAMEWON = 25;
    
     //sets the speed for the player
     private final double PLAYER_SPEED = 4;
@@ -98,7 +98,7 @@ public class Player extends DynamicSpriteEntity implements KeyListener, SceneBor
      * @author Timoy van Balkom
      */
     public void gameWon() {
-        if (score >= 25) {
+        if (score >= GAMEWON) {
             gameWon = 1;
             peach.setActiveScene(peach.ENDSCENE);
             System.out.println("check" + gameWon);

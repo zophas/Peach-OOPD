@@ -2,12 +2,13 @@ package nl.oopd.peach.entities;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
+import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.SceneBorderCrossingWatcher;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 
-public class NormalEnemy extends DynamicSpriteEntity implements IBehaviour,SceneBorderCrossingWatcher {
+public class NormalEnemy extends DynamicSpriteEntity implements SceneBorderCrossingWatcher, Collided, Collider {
   
     private Size enemySize;
     private int newXPos = 1280;
@@ -31,7 +32,6 @@ public class NormalEnemy extends DynamicSpriteEntity implements IBehaviour,Scene
         setAnchorLocationX(getSceneWidth());
     }
 
-    @Override
     public void onCollision(Collider collider) {
         if(collider instanceof Player) {
         Coordinate2D enemyPos = new Coordinate2D(newXPos, newYPos);
@@ -39,12 +39,6 @@ public class NormalEnemy extends DynamicSpriteEntity implements IBehaviour,Scene
         }
     }
 
-    @Override
-    public void isDying() {
-        // TODO Auto-generated method stub
-        
-    }
-   
 }
 
 

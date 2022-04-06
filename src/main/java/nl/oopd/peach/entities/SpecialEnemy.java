@@ -2,12 +2,13 @@ package nl.oopd.peach.entities;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
+import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.SceneBorderCrossingWatcher;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 
-public class SpecialEnemy extends DynamicSpriteEntity implements IBehaviour,SceneBorderCrossingWatcher {
+public class SpecialEnemy extends DynamicSpriteEntity implements SceneBorderCrossingWatcher, Collided, Collider {
  
     private Size enemySize;
     private int newXPos = 1280;
@@ -26,31 +27,18 @@ public class SpecialEnemy extends DynamicSpriteEntity implements IBehaviour,Scen
     }
 
     @Override
-    public void doDamage(){
-
-    }
-
-    @Override
     public void notifyBoundaryCrossing(SceneBorder sceneBorder) {
         setAnchorLocationX(getSceneWidth());
     }
 
-    @Override
     public void onCollision(Collider collider) {
-        if (collider instanceof NormalEnemy) {
-            //do nothing
-        } else if (collider instanceof HealthBonus) {
-            //do nothing
+
+        if(collider instanceof Player) {
+            Coordinate2D enemyPos = new Coordinate2D(newXPos, newYPos);
+            setAnchorLocation(enemyPos);
         }
-        Coordinate2D enemyPos = new Coordinate2D(newXPos, newYPos);
-       setAnchorLocation(enemyPos);   
     }
 
-    @Override
-    public void isDying() {
-        // TODO Auto-generated method stub
-        
-    }
-  
+
 }
 

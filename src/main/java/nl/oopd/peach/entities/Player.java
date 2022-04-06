@@ -6,6 +6,7 @@ import java.util.Set;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.UpdateExposer;
+import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.Newtonian;
 import com.github.hanyaeger.api.entities.SceneBorderTouchingWatcher;
@@ -19,7 +20,7 @@ import nl.oopd.peach.Peach;
 import nl.oopd.peach.scenes.GameScene;
 
 
-public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListener, SceneBorderTouchingWatcher, Newtonian, UpdateExposer, Points {
+public class Player extends DynamicSpriteEntity implements KeyListener, SceneBorderTouchingWatcher, Newtonian, UpdateExposer, Points, Collider, Collided {
     public final double UP = 180d;
     public final double DOWN = 360d;
     public final double LEFT = 270d;
@@ -100,8 +101,7 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
             System.out.println("check" + gameWon);
         }
     }
-   
-    @Override
+
     public void isDying() {
         if (health <= 0) {
             peach.setActiveScene(4);

@@ -35,6 +35,8 @@ public class Player extends DynamicSpriteEntity implements KeyListener, SceneBor
     public int health, score;
     private final int GAMEWON = 25;
    
+    private final int HEALTHREMOVENORMALENEMY = 5, SCORENENEMY = 1, HEALTHREMOVESPECIALENEMY = 10, SCORESPECIALENEMY = 3, HEALTHBONUSFOOD = 10, SCOREPENALTYFOOD = 2;
+
     //sets the speed for the player
     private final double PLAYER_SPEED = 4;
  
@@ -158,18 +160,18 @@ public class Player extends DynamicSpriteEntity implements KeyListener, SceneBor
     public void onCollision(Collider collider) {
         var playerHurt = new SoundClip("audio/player_hurt.mp3");
         var playerHealth = new SoundClip("audio/Healthbonus_sound.mp3");
-
+        
         if(collider instanceof NormalEnemy){
-            health -= 5;
-            score += 1;
+            health -= HEALTHREMOVENORMALENEMY;
+            score += SCORENENEMY;
             playerHurt.play();
         } else if(collider instanceof SpecialEnemy){
-            health -= 10;
-            score += 3;
+            health -= HEALTHREMOVESPECIALENEMY;
+            score += SCORESPECIALENEMY;
             playerHurt.play();
         } else if (collider instanceof HealthBonus) {
-            health += 10;
-            score -= 2;
+            health += HEALTHBONUSFOOD;
+            score -= SCOREPENALTYFOOD;
             playerHealth.play();
         }
 

@@ -50,6 +50,7 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
 
     @Override
     public void onPressedKeysChange(Set<KeyCode> pressedKeys) {
+        checkPosition();
         if (pressedKeys.contains(KeyCode.A)) {
             setMotion(PLAYER_SPEED, LEFT);
             setCurrentFrameIndex(1);
@@ -111,6 +112,13 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
 
         if (score < 0) {
             peach.setActiveScene(4);
+        }
+    }
+
+
+    private void checkPosition() {
+        if(getAnchorLocation().getY() > constraintY - 200) {
+            setAnchorLocationY(constraintY - 200);
         }
     }
 

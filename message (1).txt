@@ -14,7 +14,7 @@ import com.github.hanyaeger.api.userinput.KeyListener;
 
 import javafx.scene.input.KeyCode;
 import nl.oopd.peach.Peach;
-import nl.oopd.peach.scenes.GameLevel;
+import nl.oopd.peach.scenes.GameScene;
 
 
 public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListener, SceneBorderTouchingWatcher, Newtonian, Health {
@@ -144,7 +144,7 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
     }
 
 
-    public void setCurrentRoom(GameLevel gameLevel) {
-        currentroom = gameLevel;
+    public void setCurrentRoom(GameLevel gameScene) {
+        currentroom = gameScene;
     }
 }

@@ -16,7 +16,7 @@ import com.github.hanyaeger.api.userinput.KeyListener;
 
 import javafx.scene.input.KeyCode;
 import nl.oopd.peach.Peach;
-import nl.oopd.peach.scenes.GameLevel;
+import nl.oopd.peach.scenes.GameScene;
 
 
 public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListener, SceneBorderTouchingWatcher, Newtonian, UpdateExposer, Points {
@@ -25,11 +25,11 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
     public final double LEFT = 270d;
     public final double RIGHT = 90d;
     
-    public int constraintY = 720 - 100;
+    public int constraintY = 720 - 127;
 
     public int gameWon;
 
-    GameLevel currentroom;
+    GameScene currentroom;
     private Peach peach;
     public int health = Points.health;
     public int score = Points.score;
@@ -49,7 +49,6 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
 
     @Override
     public void onPressedKeysChange(Set<KeyCode> pressedKeys) {
-        
         if (pressedKeys.contains(KeyCode.A)) {
             setMotion(PLAYER_SPEED, LEFT);
             setCurrentFrameIndex(1);
@@ -64,12 +63,9 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
             setCurrentFrameIndex(4);
         } else if (pressedKeys.contains(KeyCode.ESCAPE)) {
             peach.setActiveScene(peach.PAUSESCREEN);
-        }
-
-        else if (pressedKeys.isEmpty()) {
+        } else if (pressedKeys.isEmpty()) {
             setSpeed(0);
         }
-
    }
 
     @Override
@@ -193,10 +189,10 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
      * Zet de currentroom naar de gameLevel die als parameter wordt meegegeven.
      * Hiermee kun je de gamelevel meegeven om de tekst realtime te updaten
      * @author Timoy van Balkom
-     * @param gameLevel
+     * @param gameScene
      */
-    public void setCurrentRoom(GameLevel gameLevel) {
-        currentroom = gameLevel;
+    public void setCurrentRoom(GameScene gameScene) {
+        currentroom = gameScene;
     }
 
     /**

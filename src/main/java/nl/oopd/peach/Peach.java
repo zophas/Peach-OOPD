@@ -7,8 +7,8 @@ import com.github.hanyaeger.api.YaegerGame;
 import nl.oopd.peach.entities.Player;
 //import nl.oopd.peach.scenes.BossLevel;
 import nl.oopd.peach.scenes.EndScene;
-import nl.oopd.peach.scenes.GameLevel;
-import nl.oopd.peach.scenes.PauseScreen;
+import nl.oopd.peach.scenes.GameScene;
+import nl.oopd.peach.scenes.PauseScene;
 import nl.oopd.peach.scenes.StartScene;
 
 
@@ -38,8 +38,8 @@ public class Peach extends YaegerGame {
     public void setupScenes()
     {
         addScene(STARTSCENE, new StartScene(this));
-        addScene(GAMESCENE, new GameLevel(this));
-        addScene(PAUSESCREEN, new PauseScreen(this));
+        addScene(GAMESCENE, new GameScene(this));
+        addScene(PAUSESCREEN, new PauseScene(this));
         addScene(ENDSCENE, new EndScene(this));
     }
 

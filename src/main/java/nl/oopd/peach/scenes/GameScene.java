@@ -22,33 +22,26 @@ import nl.oopd.peach.entities.SpecialEnemy;
 import nl.oopd.peach.entities.Gameobjects.Tiles.Tilemap.GroundTileMap;
 import nl.oopd.peach.entities.buttons.PauseButton;
 
-public class GameLevel extends DynamicScene implements TileMapContainer, Points {
+public class GameScene extends DynamicScene implements TileMapContainer, Points {
     private Peach peach;
-  
-    public Player princessPeach;
-    TextEntity healthText;
-    TextEntity scoreText;
+    TextEntity healthText, scoreText;
     
-    public int score = Points.score;
-    public int health = Points.health;
+    public int score = Points.score, health = Points.health;
     public ArrayList<HealthBonus> healthFood = new ArrayList<>();
     
     private int buttonSize = 30;
     private final int GAP = 100;
-    private final int NORMALENEMYPOS = 100;
-    private final int SPECIALENEMYPOS = 150;
+    private final int NORMALENEMYPOS = 100, SPECIALENEMYPOS = 150;
 
-    private final String GAMELEVEL_BACKGROUND = "images/GameLevel_Background.png";
-    private final String GAMESCENE_MUSIC = "audio/GameScene_music.mp3";
+    private final String GAMELEVEL_BACKGROUND = "images/GameLevel_Background.png", GAMESCENE_MUSIC = "audio/GameScene_music.mp3";
     private final String HEALTH_FOOD = "images/health.png";
     
-    private final String SCORE  = "Score: ";
-    private final String LIVES = "Health: ";
+    private final String SCORE  = "Score: ", LIVES = "Health: ";
     
     private ArrayList<TextEntity> texts = new ArrayList<>();
    
     
-    public GameLevel(Peach peach){
+    public GameScene(Peach peach){
         this.peach = peach;
     }
 
@@ -111,7 +104,7 @@ public class GameLevel extends DynamicScene implements TileMapContainer, Points 
 /**
  * Is de functie om de tekst te maken, zodat alle tekst hetzelfde eruit ziet en 
  * efficient kan worden toegevoegd met zo min mogelijk dubbele code.
- * @author Timoy van Balkom
+ * @author Amy Dorland
  * @param position
  * @param text
  * @param font

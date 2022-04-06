@@ -17,8 +17,7 @@ import nl.oopd.peach.entities.buttons.RestartButton;
 public class EndScene extends StaticScene implements Points {
     private Peach peach;
 
-    TextEntity scoreText;
-    TextEntity healthText;
+    TextEntity scoreText, healthText;
 
     public int score = Points.score;
     String scoreString = String.valueOf(score);
@@ -27,14 +26,12 @@ public class EndScene extends StaticScene implements Points {
     private final int SPACING = 200;
     
     private String endText;
-    private final String SCORE = "Your score: ";
-    private final String HEALTH = "Remaining health: ";
+    private final String SCORE = "Your score: ", HEALTH = "Remaining health: ";
 
     private final String STARTSCENE_MUSIC = "audio/StartScene_music.mp3";
 
     private final int titleFont = 80;
-    private final int fontSize = 35;
-    private final int buttonSize = 50;
+    private final int fontSize = 35, buttonSize = 50;
 
     private ArrayList<TextEntity> texts = new ArrayList<>();
 
@@ -94,7 +91,7 @@ public class EndScene extends StaticScene implements Points {
     /**
      * Is de functie om de tekst te maken, zodat alle tekst hetzelfde eruit ziet en 
      * efficient kan worden toegevoegd met zo min mogelijk dubbele code.
-     * @author Timoy van Balkom
+     * @author Amy Dorland
      * @param position
      * @param text
      * @param font

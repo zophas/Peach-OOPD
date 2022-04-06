@@ -11,29 +11,25 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import nl.oopd.peach.Peach;
+import nl.oopd.peach.entities.buttons.Button;
 import nl.oopd.peach.entities.buttons.GiveUpButton;
 import nl.oopd.peach.entities.buttons.QuitButton;
 import nl.oopd.peach.entities.buttons.ResumeButton;
 
-public class PauseScreen extends StaticScene {
+public class PauseScene extends StaticScene {
     private Peach peach;
     
     TextEntity scoreText;
 
-    private int buttonSize = 50;
-    private int fontSize = 50;
-    private int titleFont = 90;
+    private int buttonSize = 50, fontSize = 50, titleFont = 90;
 
     private final String STARTSCENE_MUSIC = "audio/StartScene_music.mp3";
-
-    private final String TITLE_TEXT = "Pause";
-    private final String SCORE = "Score: ";
+    private final String TITLE_TEXT = "Pause", SCORE = "Score: ";
     public int score;
 
-    
     private ArrayList<TextEntity> texts = new ArrayList<>();
 
-    public PauseScreen(Peach peach) {
+    public PauseScene(Peach peach) {
         this.peach = peach;
     }
 
@@ -65,20 +61,20 @@ public class PauseScreen extends StaticScene {
             addEntity(entity);
         }
 
-        ResumeButton resumeButton = new ResumeButton(resumeBttn, peach, peach.GAMESCENE, buttonSize);
+        Button resumeButton = new ResumeButton(resumeBttn, peach, peach.GAMESCENE, buttonSize);
         addEntity(resumeButton);
 
-        GiveUpButton giveUpButton = new GiveUpButton(giveUpBttn, peach, peach.STARTSCENE, buttonSize);
+        Button giveUpButton = new GiveUpButton(giveUpBttn, peach, peach.STARTSCENE, buttonSize);
         addEntity(giveUpButton);
 
-        QuitButton quitButton = new QuitButton(quitBttn, peach, buttonSize);
+        Button quitButton = new QuitButton(quitBttn, peach, buttonSize);
         addEntity(quitButton);
     }
 
     /**
      * Is de functie om de tekst te maken, zodat alle tekst hetzelfde eruit ziet en 
      * efficient kan worden toegevoegd met zo min mogelijk dubbele code.
-     * @author Timoy van Balkom
+     * @author Amy Dorland
      * @param position
      * @param text
      * @param font
@@ -94,6 +90,4 @@ public class PauseScreen extends StaticScene {
 
         return newtext;
     }
-    
-    
 }

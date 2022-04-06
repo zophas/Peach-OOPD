@@ -16,21 +16,22 @@ import javafx.scene.text.FontWeight;
 import nl.oopd.peach.Peach;
 import nl.oopd.peach.entities.HealthBonus;
 import nl.oopd.peach.entities.NormalEnemy;
-import nl.oopd.peach.entities.Points;
 import nl.oopd.peach.entities.SpecialEnemy;
 import nl.oopd.peach.entities.Gameobjects.Tiles.Tilemap.GroundTileMap;
 import nl.oopd.peach.entities.buttons.PauseButton;
 
-public class GameScene extends DynamicScene implements TileMapContainer, Points {
+public class GameScene extends DynamicScene implements TileMapContainer {
     private Peach peach;
     TextEntity healthText, scoreText;
-    
-    public int score = Points.score, health = Points.health;
+   
+    public int score, health;
+
     public ArrayList<HealthBonus> healthFood = new ArrayList<>();
     
     private int buttonSize = 30;
-    private final int GAP = 100;
-    private final int NORMALENEMYPOS = 100, SPECIALENEMYPOS = 150;
+
+    private final int NORMALENEMYPOS = 100, SPECIALENEMYPOS = 150, NORMALENEMYHEIGHT = 50, NORMALENEMYWIDTH = 125, SPECIALENEMYHEIGHT = 100, SPECIALENEMYWIDTH = 200, HEALTHFOODHEIGHT = 200, HEALTHFOODWIDTH = 100, SPACING = 300;
+    private final int GAP = 100, XPOS = 0, YPOS = 0, MULTIPLIYER = 2, DEVIDER = 2;
 
     private final String GAMELEVEL_BACKGROUND = "images/GameLevel_Background.png", GAMESCENE_MUSIC = "audio/GameScene_music.mp3";
     private final String HEALTH_FOOD = "images/health.png";
@@ -39,7 +40,6 @@ public class GameScene extends DynamicScene implements TileMapContainer, Points 
     
     private ArrayList<TextEntity> texts = new ArrayList<>();
    
-    
     public GameScene(Peach peach){
         this.peach = peach;
     }
@@ -52,11 +52,11 @@ public class GameScene extends DynamicScene implements TileMapContainer, Points 
 
     @Override
     public void setupEntities() {
-        Coordinate2D pauseBttn = new Coordinate2D(0, 0);
-        Coordinate2D scoreTxt = new Coordinate2D(0 + GAP, 0);
-        Coordinate2D scorePos = new Coordinate2D(0 + GAP * 2, 0);
-        Coordinate2D livesTxt = new Coordinate2D(0 + GAP, buttonSize);
-        Coordinate2D livesPos = new Coordinate2D(0 + GAP * 2, buttonSize);
+        Coordinate2D pauseBttn = new Coordinate2D(XPOS, YPOS);
+        Coordinate2D scoreTxt = new Coordinate2D(XPOS + GAP, YPOS);
+        Coordinate2D scorePos = new Coordinate2D(XPOS + GAP * MULTIPLIYER, YPOS);
+        Coordinate2D livesTxt = new Coordinate2D(XPOS+ GAP, buttonSize);
+        Coordinate2D livesPos = new Coordinate2D(XPOS + GAP * MULTIPLIYER, buttonSize);
 
         PauseButton pauseButton = new PauseButton(pauseBttn, peach, peach.PAUSESCREEN, buttonSize);
         addEntity(pauseButton);
@@ -64,24 +64,24 @@ public class GameScene extends DynamicScene implements TileMapContainer, Points 
         peach.princessPeach.setCurrentRoom(this);
         addEntity(peach.princessPeach);
 
-        var goomba = new NormalEnemy("images/normal_Enemy_Two.png", new Coordinate2D(getWidth() / 2, getHeight() - NORMALENEMYPOS), new Size(125, 50), 1, 2);
+        var goomba = new NormalEnemy("images/normal_Enemy_Two.png", new Coordinate2D(getWidth() / DEVIDER, getHeight() - NORMALENEMYPOS), new Size(NORMALENEMYWIDTH, NORMALENEMYHEIGHT), 1, 2);
         addEntity(goomba);
 
-        var special = new SpecialEnemy("images/special_Enemy04.png", new Coordinate2D(getWidth() / 2 - 300, getHeight() - SPECIALENEMYPOS), new Size(200, 100), 1, 4);
+        var special = new SpecialEnemy("images/special_Enemy04.png", new Coordinate2D(getWidth() / DEVIDER - SPACING, getHeight() - SPECIALENEMYPOS), new Size(SPECIALENEMYWIDTH, SPECIALENEMYHEIGHT), 1, 4);
         addEntity(special);
 
-        var healthFood = new HealthBonus(HEALTH_FOOD, new Coordinate2D(getWidth() / 2 - 400, getHeight() / 2), new Size(100, 200));
+        var healthFood = new HealthBonus(HEALTH_FOOD, new Coordinate2D(getWidth() / DEVIDER - SPACING, getHeight() / DEVIDER), new Size(HEALTHFOODWIDTH, HEALTHFOODHEIGHT));
         addEntity(healthFood);
 
         texts.add(createText(scoreTxt, SCORE, FontWeight.BOLD, buttonSize, Color.WHITE));
-        scoreText = new TextEntity(scorePos, "" + score);
+        scoreText = new TextEntity(scorePos, "" + peach.princessPeach.score);
         scoreText.setFill(Color.WHITE);
         scoreText.setAnchorPoint(AnchorPoint.TOP_LEFT);
         scoreText.setFont(Font.font("Roboto", FontWeight.BOLD, buttonSize));
         addEntity(scoreText);
 
         texts.add(createText(livesTxt, LIVES, FontWeight.BOLD, buttonSize, Color.RED));
-        healthText = new TextEntity(livesPos, "" + health);
+        healthText = new TextEntity(livesPos, "" + peach.princessPeach.health);
         healthText.setFill(Color.RED);
         healthText.setAnchorPoint(AnchorPoint.TOP_LEFT);
         healthText.setFont(Font.font("Roboto", FontWeight.BOLD, buttonSize));
@@ -91,7 +91,6 @@ public class GameScene extends DynamicScene implements TileMapContainer, Points 
             addEntity(entity);
         }
     }
-
 
     @Override
     public void setupTileMaps() {

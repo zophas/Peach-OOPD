@@ -1,12 +1,15 @@
 package nl.oopd.peach.scenes;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.impl.TextEntity;
 import com.github.hanyaeger.api.scenes.StaticScene;
+import com.github.hanyaeger.api.userinput.KeyListener;
 
+import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -16,17 +19,17 @@ import nl.oopd.peach.entities.buttons.GiveUpButton;
 import nl.oopd.peach.entities.buttons.QuitButton;
 import nl.oopd.peach.entities.buttons.ResumeButton;
 
-public class PauseScene extends StaticScene {
+public class PauseScene extends StaticScene implements KeyListener {
     private Peach peach;
     
     TextEntity scoreText;
+    public int score;
 
     private int buttonSize = 50, fontSize = 50, titleFont = 90;
 
     private final String STARTSCENE_MUSIC = "audio/StartScene_music.mp3";
     private final String TITLE_TEXT = "Pause", SCORE = "Score: ";
-    public int score;
-
+   private final int DEVIDER = 2, SMALLSPACING = 100, BIGSPACING = 200;
     private ArrayList<TextEntity> texts = new ArrayList<>();
 
     public PauseScene(Peach peach) {
@@ -42,12 +45,12 @@ public class PauseScene extends StaticScene {
 
     @Override
     public void setupEntities() {
-        Coordinate2D title = new Coordinate2D(getWidth() / 2, getHeight() / 2 - 200);
-        Coordinate2D score = new Coordinate2D(getWidth() / 2 - 100, getHeight() / 2 - 100);
-        Coordinate2D scorePos = new Coordinate2D(getWidth() / 2 + 100, getHeight() / 2 - 100);
-        Coordinate2D resumeBttn = new Coordinate2D(getWidth() / 2, getHeight() / 2);
-        Coordinate2D giveUpBttn = new Coordinate2D(getWidth() / 2, getHeight() / 2 + 100);
-        Coordinate2D quitBttn = new Coordinate2D(getWidth() / 2, getHeight() / 2 + 200);
+        Coordinate2D title = new Coordinate2D(getWidth() / DEVIDER, getHeight() / 2 - BIGSPACING);
+        Coordinate2D score = new Coordinate2D(getWidth() / DEVIDER - SMALLSPACING, getHeight() / 2 - SMALLSPACING);
+        Coordinate2D scorePos = new Coordinate2D(getWidth() / DEVIDER + SMALLSPACING, getHeight() / 2 - SMALLSPACING);
+        Coordinate2D resumeBttn = new Coordinate2D(getWidth() / DEVIDER, getHeight() / DEVIDER);
+        Coordinate2D giveUpBttn = new Coordinate2D(getWidth() / DEVIDER, getHeight() / DEVIDER + SMALLSPACING);
+        Coordinate2D quitBttn = new Coordinate2D(getWidth() / DEVIDER, getHeight() / DEVIDER + BIGSPACING);
 
         texts.add(createText(score, SCORE, FontWeight.BOLD, fontSize, Color.WHITE));
         scoreText = new TextEntity(scorePos, "" + peach.princessPeach.score);
@@ -90,4 +93,11 @@ public class PauseScene extends StaticScene {
 
         return newtext;
     }
+
+    @Override
+    public void onPressedKeysChange(Set<KeyCode> pressedKeys) {
+        if (pressedKeys.contains(KeyCode.ESCAPE)) {
+            peach.setActiveScene(peach.GAMESCENE);
+        }
+    }  
 }

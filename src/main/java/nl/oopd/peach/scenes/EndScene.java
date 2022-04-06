@@ -10,7 +10,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import nl.oopd.peach.Peach;
-import nl.oopd.peach.entities.Player;
 import nl.oopd.peach.entities.buttons.QuitButton;
 import nl.oopd.peach.entities.buttons.RestartButton;
 
@@ -18,7 +17,7 @@ public class EndScene extends StaticScene {
     private Peach peach;
 
     TextEntity scoreText, healthText;
-    private Player princessPeach;
+   
     public int score;  
     public int health;
 

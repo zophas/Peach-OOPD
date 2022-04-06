@@ -16,7 +16,6 @@ import javafx.scene.text.FontWeight;
 import nl.oopd.peach.Peach;
 import nl.oopd.peach.entities.HealthBonus;
 import nl.oopd.peach.entities.NormalEnemy;
-import nl.oopd.peach.entities.Player;
 import nl.oopd.peach.entities.SpecialEnemy;
 import nl.oopd.peach.entities.Gameobjects.Tiles.Tilemap.GroundTileMap;
 import nl.oopd.peach.entities.buttons.PauseButton;
@@ -24,7 +23,7 @@ import nl.oopd.peach.entities.buttons.PauseButton;
 public class GameScene extends DynamicScene implements TileMapContainer {
     private Peach peach;
     TextEntity healthText, scoreText;
-    private Player princessPeach;
+   
     public int score; 
     public int health;
     public ArrayList<HealthBonus> healthFood = new ArrayList<>();
@@ -92,7 +91,6 @@ public class GameScene extends DynamicScene implements TileMapContainer {
             addEntity(entity);
         }
     }
-
 
     @Override
     public void setupTileMaps() {

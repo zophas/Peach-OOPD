@@ -1,9 +1,11 @@
 package nl.oopd.peach.entities;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
+import com.github.hanyaeger.api.UpdateExposer;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.Newtonian;
 import com.github.hanyaeger.api.entities.SceneBorderTouchingWatcher;
@@ -17,7 +19,7 @@ import nl.oopd.peach.Peach;
 import nl.oopd.peach.scenes.GameLevel;
 
 
-public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListener, SceneBorderTouchingWatcher, Newtonian {
+public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListener, SceneBorderTouchingWatcher, Newtonian, UpdateExposer {
     public final double UP = 180d;
     public final double DOWN = 360d;
     public final double LEFT = 270d;
@@ -50,7 +52,7 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
 
     @Override
     public void onPressedKeysChange(Set<KeyCode> pressedKeys) {
-        checkPosition();
+        
         if (pressedKeys.contains(KeyCode.A)) {
             setMotion(PLAYER_SPEED, LEFT);
             setCurrentFrameIndex(1);
@@ -115,11 +117,37 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
         }
     }
 
+    enum Side {
+        BOTTOM
+    }
 
-    private void checkPosition() {
-        if(getAnchorLocation().getY() > constraintY - 200) {
-            setAnchorLocationY(constraintY - 200);
+    /**
+     * Zet de locatie van de anchorpoint naar constraint wanneer de boundary geraakt is.
+     * @author Amy Dorland
+     */
+
+    public void groundBoundary() {
+        Set<Side> touchingSide = touchingBottom();
+        if(touchingSide.contains(Side.BOTTOM)) {
+            setAnchorLocationY(constraintY);
         }
+    }
+
+    /**
+     * Controleert of constraintY groter is dan de anchorlocation
+     * Als dat zo is, wordt bottom toegevoegd aan de set sides.
+     * @return
+     * @author Amy Dorland
+     */
+
+    private Set<Side> touchingBottom() {
+        Set<Side> sides = new HashSet<>();
+
+        if(getAnchorLocation().getY() >= constraintY) {
+            sides.add(Side.BOTTOM);
+        }
+
+        return sides;
     }
 
     @Override
@@ -179,6 +207,11 @@ public class Player extends DynamicSpriteEntity implements IBehaviour, KeyListen
     public void resetGame() {
         score = 0;
         health = 25;
+    }
+
+    @Override
+    public void explicitUpdate(long timestamp) {
+        groundBoundary();
     }
 
 }

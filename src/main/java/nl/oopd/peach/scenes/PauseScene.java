@@ -1,12 +1,15 @@
 package nl.oopd.peach.scenes;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.impl.TextEntity;
 import com.github.hanyaeger.api.scenes.StaticScene;
+import com.github.hanyaeger.api.userinput.KeyListener;
 
+import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -16,7 +19,7 @@ import nl.oopd.peach.entities.buttons.GiveUpButton;
 import nl.oopd.peach.entities.buttons.QuitButton;
 import nl.oopd.peach.entities.buttons.ResumeButton;
 
-public class PauseScene extends StaticScene {
+public class PauseScene extends StaticScene implements KeyListener {
     private Peach peach;
     
     TextEntity scoreText;
@@ -90,4 +93,11 @@ public class PauseScene extends StaticScene {
 
         return newtext;
     }
+
+    @Override
+    public void onPressedKeysChange(Set<KeyCode> pressedKeys) {
+        if (pressedKeys.contains(KeyCode.ESCAPE)) {
+            peach.setActiveScene(peach.GAMESCENE);
+        }
+    }  
 }

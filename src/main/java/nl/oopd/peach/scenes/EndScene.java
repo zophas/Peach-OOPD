@@ -10,18 +10,17 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import nl.oopd.peach.Peach;
-import nl.oopd.peach.entities.Points;
+import nl.oopd.peach.entities.Player;
 import nl.oopd.peach.entities.buttons.QuitButton;
 import nl.oopd.peach.entities.buttons.RestartButton;
 
-public class EndScene extends StaticScene implements Points {
+public class EndScene extends StaticScene {
     private Peach peach;
 
     TextEntity scoreText, healthText;
-
-    public int score = Points.score;
-    String scoreString = String.valueOf(score);
-    public int health = Points.health;
+    private Player princessPeach;
+    public int score;  
+    public int health;
 
     private final int SPACING = 200;
     
@@ -34,7 +33,6 @@ public class EndScene extends StaticScene implements Points {
     private final int fontSize = 35, buttonSize = 50;
 
     private ArrayList<TextEntity> texts = new ArrayList<>();
-
 
     public EndScene(Peach peach) {
         this.peach = peach;
@@ -64,14 +62,14 @@ public class EndScene extends StaticScene implements Points {
 
         texts.add(createText(endTxt, endText, FontWeight.BOLD, titleFont, Color.HOTPINK));
         texts.add(createText(scoretxt, SCORE, FontWeight.MEDIUM, fontSize, Color.WHITE));
-        scoreText = new TextEntity(scorePos, "" + score);
+        scoreText = new TextEntity(scorePos, "" + peach.princessPeach.score);
         scoreText.setFill(Color.WHITE);
         scoreText.setAnchorPoint(AnchorPoint.CENTER_CENTER);
         scoreText.setFont(Font.font("Roboto", FontWeight.BOLD, fontSize));
         addEntity(scoreText);
 
         texts.add(createText(healthtxt, HEALTH, FontWeight.MEDIUM, fontSize, Color.RED));
-        healthText = new TextEntity(healthPos, "" + health);
+        healthText = new TextEntity(healthPos, "" + peach.princessPeach.health);
         healthText.setFill(Color.RED);
         healthText.setAnchorPoint(AnchorPoint.CENTER_CENTER);
         healthText.setFont(Font.font("Roboto", FontWeight.BOLD, fontSize));

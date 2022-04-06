@@ -16,16 +16,17 @@ import javafx.scene.text.FontWeight;
 import nl.oopd.peach.Peach;
 import nl.oopd.peach.entities.HealthBonus;
 import nl.oopd.peach.entities.NormalEnemy;
-import nl.oopd.peach.entities.Points;
+import nl.oopd.peach.entities.Player;
 import nl.oopd.peach.entities.SpecialEnemy;
 import nl.oopd.peach.entities.Gameobjects.Tiles.Tilemap.GroundTileMap;
 import nl.oopd.peach.entities.buttons.PauseButton;
 
-public class GameScene extends DynamicScene implements TileMapContainer, Points {
+public class GameScene extends DynamicScene implements TileMapContainer {
     private Peach peach;
     TextEntity healthText, scoreText;
-    
-    public int score = Points.score, health = Points.health;
+    private Player princessPeach;
+    public int score; 
+    public int health;
     public ArrayList<HealthBonus> healthFood = new ArrayList<>();
     
     private int buttonSize = 30;
@@ -74,14 +75,14 @@ public class GameScene extends DynamicScene implements TileMapContainer, Points 
         addEntity(healthFood);
 
         texts.add(createText(scoreTxt, SCORE, FontWeight.BOLD, buttonSize, Color.WHITE));
-        scoreText = new TextEntity(scorePos, "" + score);
+        scoreText = new TextEntity(scorePos, "" + peach.princessPeach.score);
         scoreText.setFill(Color.WHITE);
         scoreText.setAnchorPoint(AnchorPoint.TOP_LEFT);
         scoreText.setFont(Font.font("Roboto", FontWeight.BOLD, buttonSize));
         addEntity(scoreText);
 
         texts.add(createText(livesTxt, LIVES, FontWeight.BOLD, buttonSize, Color.RED));
-        healthText = new TextEntity(livesPos, "" + health);
+        healthText = new TextEntity(livesPos, "" + peach.princessPeach.health);
         healthText.setFill(Color.RED);
         healthText.setAnchorPoint(AnchorPoint.TOP_LEFT);
         healthText.setFont(Font.font("Roboto", FontWeight.BOLD, buttonSize));

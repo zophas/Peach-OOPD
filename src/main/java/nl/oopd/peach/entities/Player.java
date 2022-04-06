@@ -20,7 +20,7 @@ import nl.oopd.peach.Peach;
 import nl.oopd.peach.scenes.GameScene;
 
 
-public class Player extends DynamicSpriteEntity implements KeyListener, SceneBorderTouchingWatcher, Newtonian, UpdateExposer, Points, Collider, Collided {
+public class Player extends DynamicSpriteEntity implements KeyListener, SceneBorderTouchingWatcher, Newtonian, UpdateExposer, Collider, Collided {
     public final double UP = 180d;
     public final double DOWN = 360d;
     public final double LEFT = 270d;
@@ -32,8 +32,8 @@ public class Player extends DynamicSpriteEntity implements KeyListener, SceneBor
 
     GameScene currentroom;
     private Peach peach;
-    public int health = Points.health;
-    public int score = Points.score;
+    public int health;
+    public int score;
    
     //sets the speed for the player
     private final double PLAYER_SPEED = 4;
@@ -45,6 +45,9 @@ public class Player extends DynamicSpriteEntity implements KeyListener, SceneBor
     public Player(String resource,Coordinate2D location, Peach peach) {
         super(resource, location, new Size(width, height), 1, 4);
         this.peach = peach;
+
+        score = 0;
+        health = 25;
 
     }
 
